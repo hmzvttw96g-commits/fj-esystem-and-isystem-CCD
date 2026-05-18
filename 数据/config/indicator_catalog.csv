@@ -1,0 +1,22 @@
+﻿indicator_id,system,label,dimension,unit,method_note,preferred_sources,access_level,query_templates,extraction_keywords
+F_FIN_GDP,F_finance,金融业增加值/GDP,区域金融规模,%,金融业增加值除以地区生产总值；需统一当年价或年鉴口径。,国家统计局、各省统计年鉴、统计公报,public,{province} {year} 金融业增加值 GDP 统计年鉴 | {province} {year} 国民经济和社会发展统计公报 金融业 增加值,金融业增加值 | 地区生产总值 | GDP
+F_LOAN_DEPOSIT_GDP,F_finance,存贷款余额/GDP,金融深化程度,%,金融机构本外币存款余额与贷款余额之和除以GDP。,人民银行分行金融运行报告、统计年鉴,public,{province} {year} 存贷款余额 GDP 人民银行 金融运行报告 | {province} {year} 金融机构 本外币 存款余额 贷款余额,存款余额 | 贷款余额 | 本外币 | 金融机构
+F_DIGITAL_FINANCE,F_finance,数字普惠金融指数,数字金融环境,index,北京大学数字普惠金融指数；通常需下载公开数据包后导入。,北京大学数字金融研究中心,download_or_manual,北京大学 数字普惠金融指数 {year} {province} | PKU Digital Financial Inclusion Index China {year} data,数字普惠金融指数 | 覆盖广度 | 使用深度
+F_AI_FINANCING_EVENTS,F_finance,AI融资事件数,AI定向资本支持,count,按AI企业口径统计融资事件数；商业数据库结果需保留导出来源。,IT桔子、清科、投中、企查查、天眼查、新闻稿,restricted_or_public_news,{province} {year} 人工智能 融资 事件 | {province} {year} AI 企业 融资 投资 | {province} {year} 人工智能 创投 融资,融资 | 投资 | 轮 | 人工智能 | AI
+F_AI_GUIDANCE_FUND,F_finance,AI/数字经济/战新产业基金规模,政府引导资本,亿元,优先统计明确投向AI、数字经济或战略性新兴产业的政府基金规模。,发改委、财政厅、工信厅、基金公告、政府官网,public,{province} {year} 人工智能 产业基金 规模 | {province} {year} 数字经济 产业基金 政府引导基金 | {province} {year} 战略性新兴产业 引导基金 人工智能,产业基金 | 引导基金 | 规模 | 人工智能 | 数字经济
+E_AI_MAJOR_COUNT,E_education,AI相关专业数量,人才培养入口,count,按E0/E1/E2三类专业口径分别统计；基准建议采用E1。,教育部本科专业备案、高校官网、招生章程,public,{province} {year} 人工智能 专业 高校 数量 | {province} {year} 教育部 本科专业备案 人工智能 智能科学与技术 数据科学 机器人工程,人工智能 | 智能科学与技术 | 数据科学与大数据技术 | 机器人工程
+E_AI_MASTER_PHD,E_education,AI相关硕博点数量,高层次培养能力,count,以人工智能、计算机、控制、电子信息、软件等相关学位点为基础，需说明口径。,国务院学位委员会、教育部、高校研究生院,public,{province} {year} 人工智能 硕士点 博士点 高校 | {province} {year} 计算机 软件工程 控制科学 电子信息 学位授权点,博士点 | 硕士点 | 学位授权点 | 人工智能
+E_AI_PAPERS,E_education,高校AI论文数量,高校知识产出,count,用AI关键词检索高校署名论文；CNKI/WoS/Scopus多为数据库导出。,CNKI、Web of Science、Scopus、Google Scholar,restricted_or_manual_export,{province} 高校 {year} 人工智能 论文 数量 | {province} university artificial intelligence papers {year},论文 | 人工智能 | 高校 | 机器学习 | 深度学习
+E_UNIV_AI_PATENTS,E_education,高校AI专利数量,高校技术产出,count,国家知识产权局或专利数据库按申请人所在地、申请人类型和AI关键词统计。,国家知识产权局、专利检索系统、Incopat等,restricted_or_manual_export,{province} 高校 人工智能 专利 {year} | {province} 大学 机器学习 深度学习 专利 {year},专利 | 高校 | 大学 | 人工智能 | 机器学习
+E_AI_INDUSTRY_COLLAB,E_education,AI产业学院/联合实验室数量,产教连接,count,统计AI相关产业学院、校企联合实验室、现代产业学院。,高校官网、教育厅、科技厅、工信厅,public,{province} {year} 人工智能 产业学院 | {province} {year} AI 校企联合实验室 | {province} {year} 人工智能 现代产业学院,产业学院 | 联合实验室 | 校企 | 人工智能
+I_AI_COMPANY_COUNT,I_industry,AI企业数量,产业主体规模,count,按I0/I1/I2企业口径统计；商业数据库导出需留痕。,企查查、天眼查、工商数据、政府重点企业名单,restricted_or_public_lists,{province} {year} 人工智能 企业 数量 | {province} AI 企业 名单 人工智能 {year} | {province} 重点 人工智能 企业 名单,企业 | 人工智能 | 名单 | 数量
+I_AI_ENTERPRISE_PATENTS,I_industry,AI企业专利数量,企业创新能力,count,按企业申请人、AI关键词和年份统计。,国家知识产权局、专利数据库、企业年报,restricted_or_manual_export,{province} 企业 人工智能 专利 {year} | {province} AI 企业 专利 数量 {year},专利 | 企业 | 人工智能 | 机器学习 | 深度学习
+I_TECH_CONTRACT,I_industry,技术合同成交额,成果转化活跃度,亿元,若无法分离AI口径，可先用地区技术合同成交额作为成果转化环境。,科技统计公报、科技厅、统计年鉴,public,{province} {year} 技术合同成交额 | {province} {year} 技术市场 成交额 科技统计公报,技术合同成交额 | 技术市场 | 成交额
+I_AI_JOBS,I_industry,AI岗位数量,产业人才需求,count,招聘平台数据存在样本偏差；建议作为增强变量或稳健性变量。,BOSS直聘、智联招聘、猎聘、公开岗位页,platform_limited,{province} {year} 人工智能 岗位 数量 招聘 | {province} AI 工程师 招聘 {year},招聘 | 岗位 | 人工智能 | 算法工程师 | 机器学习
+I_AI_SCENARIOS,I_industry,AI应用示范项目/场景数量,应用落地,count,统计工信、发改、科技部门公布的AI应用场景、示范项目。,工信部、发改委、科技厅、工信厅,public,{province} {year} 人工智能 应用场景 示范项目 | {province} {year} AI 应用场景 清单,应用场景 | 示范项目 | 人工智能 | 清单
+S_SERVICE_AI_INTENSITY,S_mechanism,第三产业AI应用强度,产业吸纳机制,ratio,增强变量；可用第三产业AI企业/岗位/专利/融资事件占全部AI对应数量之比。,企业库、招聘平台、专利库、融资数据库,derived_from_ai_records,{province} {year} 第三产业 人工智能 应用 企业 岗位 | {province} {year} 服务业 人工智能 应用 金融 医疗 教育 政务,第三产业 | 服务业 | 人工智能 | 应用
+C_GDP_PER_CAPITA,C_control,人均GDP,经济发展水平,元/人,控制变量。,国家统计局、统计年鉴、统计公报,public,{province} {year} 人均GDP 统计公报 | {province} {year} 人均地区生产总值,人均GDP | 人均地区生产总值
+C_INDUSTRY_STRUCTURE,C_control,第二产业/第三产业占比,产业基础,%,控制变量；可拆为制造业占比、二产占比、三产占比。,国家统计局、统计年鉴、统计公报,public,{province} {year} 第二产业 第三产业 占比 统计公报 | {province} {year} 三次产业结构 统计年鉴,第二产业 | 第三产业 | 产业结构 | 占比
+C_SCI_TECH_FISCAL,C_control,科技财政支出/GDP,政府科技投入,%,控制变量；科技支出除以GDP。,财政年鉴、统计年鉴、财政厅,public,{province} {year} 科学技术支出 GDP 财政 | {province} {year} 科技财政支出 统计年鉴,科学技术支出 | 科技支出 | 财政
+C_DIGITAL_INFRA,C_control,数字基础设施,数字基础,count_or_index,宽带用户、移动互联网用户、5G基站、算力中心等可择一或组合。,通信管理局、统计年鉴、工信厅,public,{province} {year} 互联网宽带用户 移动互联网用户 统计 | {province} {year} 5G基站 数字基础设施,宽带用户 | 移动互联网 | 5G基站 | 数字基础设施
+C_URBANIZATION,C_control,城镇化率,城镇化水平,%,控制变量。,国家统计局、统计年鉴、统计公报,public,{province} {year} 城镇化率 统计公报 | {province} {year} 常住人口城镇化率,城镇化率 | 常住人口城镇化率

@@ -1,0 +1,10 @@
+.obsidian/workspace*.json
+.trash/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+*.tmp
+*.temp
+__pycache__/
+*.py[cod]

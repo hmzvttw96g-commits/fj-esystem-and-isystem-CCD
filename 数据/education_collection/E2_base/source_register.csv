@@ -1,0 +1,10 @@
+source_id,source_title,source_url,publisher,access_date,source_type,reliability_level,raw_file_path,notes
+SRC_E2_SHARED_README,教育系统 E 指标数据采集规范,C:\金融专硕\论文\硕士毕业论文_Obsidian_MD统一整理_20260512\数据\education_collection\_shared\README_采集规范.md,论文数据采集团队,2026-05-17,本地共享规范,A,,用于统一字段和可靠性分级
+SRC_E2_METHOD_XLSX,AI三系统指标口径与数据采集方法_20260517.xlsx,C:\金融专硕\论文\硕士毕业论文_Obsidian_MD统一整理_20260512\04_数据变量与实证\AI三系统指标口径与数据采集方法_20260517.xlsx,论文指标口径表,2026-05-17,本地口径工作簿,A,C:\金融专硕\论文\硕士毕业论文_Obsidian_MD统一整理_20260512\数据\education_collection\E2_base\raw\AI三系统指标口径与数据采集方法_20260517.xlsx,已读取03_教育E指标中E2基本口径定义
+SRC_MOE_MAJOR_2024_PAGE,2024年度普通高等学校本科专业备案和审批结果页面,https://www.moe.gov.cn/srcsite/A08/moe_1034/s4930/202504/t20250422_1188239.html,教育部,2026-05-17,教育部通知页面,A,,已定位附件链接但按用户要求停止继续下载和抽取
+SRC_MOE_MAJOR_2023_PAGE,2023年度普通高等学校本科专业备案和审批结果页面,https://www.moe.gov.cn/srcsite/A08/moe_1034/s4930/202403/t20240319_1121111.html,教育部,2026-05-17,教育部通知页面,A,,已定位附件链接但按用户要求停止继续下载和抽取
+SRC_MOE_MAJOR_2022_PAGE,2022年度普通高等学校本科专业备案和审批结果页面,https://www.moe.gov.cn/srcsite/A08/moe_1034/s4930/202304/t20230419_1056224.html,教育部,2026-05-17,教育部通知页面,A,,已定位附件链接但按用户要求停止继续下载和抽取
+SRC_MOE_MAJOR_2021_PAGE,2021年度普通高等学校本科专业备案和审批结果页面,https://www.moe.gov.cn/srcsite/A08/moe_1034/s4930/202202/t20220224_602135.html,教育部,2026-05-17,教育部通知页面,A,,已定位附件链接但按用户要求停止继续下载和抽取
+SRC_MOE_MAJOR_2020_PAGE,2020年度普通高等学校本科专业备案和审批结果页面,https://www.moe.gov.cn/srcsite/A08/moe_1034/s4930/202103/t20210301_516076.html,教育部,2026-05-17,教育部通知页面,A,,已定位xls附件链接但按用户要求停止继续下载和抽取
+SRC_MOE_MAJOR_2019_PAGE,2019年度普通高等学校本科专业备案和审批结果页面,https://www.moe.gov.cn/srcsite/A08/moe_1034/s4930/202003/t20200303_426853.html,教育部,2026-05-17,教育部通知页面,A,,已定位附件链接但按用户要求停止继续下载和抽取
+SRC_MOE_MAJOR_2018_PAGE,2018年度普通高等学校本科专业备案和审批结果页面,https://hudong.moe.gov.cn/srcsite/A08/moe_1034/s4930/201903/t20190329_376012.html,教育部,2026-05-17,教育部通知页面,A,,已定位docx附件链接但按用户要求停止继续下载和抽取

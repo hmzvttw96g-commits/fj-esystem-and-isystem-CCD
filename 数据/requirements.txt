@@ -1,0 +1,6 @@
+requests
+beautifulsoup4
+charset-normalizer
+pandas
+openpyxl
+tavily-python

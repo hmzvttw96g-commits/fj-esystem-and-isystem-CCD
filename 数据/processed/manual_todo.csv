@@ -1,0 +1,8 @@
+﻿indicator_id,label,province,needed_years,access_level,recommended_action,preferred_sources
+F_DIGITAL_FINANCE,数字普惠金融指数,福建,2018-2024/2025,download_or_manual,从商业数据库或学术数据库导出CSV/XLSX后放入 数据/manual_import，再运行本脚本 --index-manual-imports,北京大学数字金融研究中心
+F_AI_FINANCING_EVENTS,AI融资事件数,福建,2018-2024/2025,restricted_or_public_news,从商业数据库或学术数据库导出CSV/XLSX后放入 数据/manual_import，再运行本脚本 --index-manual-imports,IT桔子、清科、投中、企查查、天眼查、新闻稿
+E_AI_PAPERS,高校AI论文数量,福建,2018-2024/2025,restricted_or_manual_export,从商业数据库或学术数据库导出CSV/XLSX后放入 数据/manual_import，再运行本脚本 --index-manual-imports,CNKI、Web of Science、Scopus、Google Scholar
+E_UNIV_AI_PATENTS,高校AI专利数量,福建,2018-2024/2025,restricted_or_manual_export,从商业数据库或学术数据库导出CSV/XLSX后放入 数据/manual_import，再运行本脚本 --index-manual-imports,国家知识产权局、专利检索系统、Incopat等
+I_AI_COMPANY_COUNT,AI企业数量,福建,2018-2024/2025,restricted_or_public_lists,从商业数据库或学术数据库导出CSV/XLSX后放入 数据/manual_import，再运行本脚本 --index-manual-imports,企查查、天眼查、工商数据、政府重点企业名单
+I_AI_ENTERPRISE_PATENTS,AI企业专利数量,福建,2018-2024/2025,restricted_or_manual_export,从商业数据库或学术数据库导出CSV/XLSX后放入 数据/manual_import，再运行本脚本 --index-manual-imports,国家知识产权局、专利数据库、企业年报
+I_AI_JOBS,AI岗位数量,福建,2018-2024/2025,platform_limited,从商业数据库或学术数据库导出CSV/XLSX后放入 数据/manual_import，再运行本脚本 --index-manual-imports,BOSS直聘、智联招聘、猎聘、公开岗位页

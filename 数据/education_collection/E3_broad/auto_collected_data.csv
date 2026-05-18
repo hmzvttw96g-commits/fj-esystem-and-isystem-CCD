@@ -1,0 +1,9 @@
+﻿system,indicator_code,indicator_name,scope_level,province,city,school,year,value,unit,source_id,collection_method,confidence,needs_manual_review,notes
+教育系统 E,E3_SUPPORT_MAJOR_COUNT,AI支撑专业数量,扩大口径,福建省,,,2018,2,个,MOE_UNDERGRAD_2018,自动解析教育部本科专业备案/审批附件,A,否,学校：福建商学院；福建师范大学闽南科技学院
+教育系统 E,E3_SUPPORT_MAJOR_COUNT,AI支撑专业数量,扩大口径,福建省,,,2019,,个,,自动解析教育部本科专业备案/审批附件,待核验,是,自动解析未得到已核验学校明细；若PDF仅关键词命中，则未计入正式值。
+教育系统 E,E3_SUPPORT_MAJOR_COUNT,AI支撑专业数量,扩大口径,福建省,,,2020,2,个,MOE_UNDERGRAD_2020,自动解析教育部本科专业备案/审批附件,A,否,学校：武夷学院；闽南师范大学
+教育系统 E,E3_SUPPORT_MAJOR_COUNT,AI支撑专业数量,扩大口径,福建省,,,2021,,个,,自动解析教育部本科专业备案/审批附件,待核验,是,自动解析未得到已核验学校明细；若PDF仅关键词命中，则未计入正式值。
+教育系统 E,E3_SUPPORT_MAJOR_COUNT,AI支撑专业数量,扩大口径,福建省,,,2022,,个,,自动解析教育部本科专业备案/审批附件,待核验,是,自动解析未得到已核验学校明细；若PDF仅关键词命中，则未计入正式值。
+教育系统 E,E3_SUPPORT_MAJOR_COUNT,AI支撑专业数量,扩大口径,福建省,,,2023,,个,,自动解析教育部本科专业备案/审批附件,待核验,是,自动解析未得到已核验学校明细；若PDF仅关键词命中，则未计入正式值。
+教育系统 E,E3_SUPPORT_MAJOR_COUNT,AI支撑专业数量,扩大口径,福建省,,,2024,,个,,自动解析教育部本科专业备案/审批附件,待核验,是,自动解析未得到已核验学校明细；若PDF仅关键词命中，则未计入正式值。
+教育系统 E,E3_SUPPORT_MAJOR_COUNT,AI支撑专业数量,扩大口径,福建省,,,2025,,个,,自动解析教育部本科专业备案/审批附件,待核验,是,自动解析未得到已核验学校明细；若PDF仅关键词命中，则未计入正式值。

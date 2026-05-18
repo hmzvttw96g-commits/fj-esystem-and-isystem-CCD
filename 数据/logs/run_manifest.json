@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-05-14T13:59:08",
+  "data_root": "C:\\金融专硕\\论文\\硕士毕业论文_Obsidian_MD统一整理_20260512\\数据",
+  "sample": "narrow",
+  "provinces": [
+    "福建"
+  ],
+  "start_year": 2024,
+  "end_year": 2024,
+  "selected_indicators": [
+    "F_FIN_GDP",
+    "E_AI_MAJOR_COUNT",
+    "I_AI_COMPANY_COUNT"
+  ],
+  "dry_run": false,
+  "index_manual_imports": false,
+  "tavily_enabled": false,
+  "search_rows": 14,
+  "numeric_candidates": 37,
+  "tables": 12
+}
