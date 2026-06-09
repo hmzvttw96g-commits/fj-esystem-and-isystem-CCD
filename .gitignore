@@ -1,6 +1,24 @@
-.DS_Store
+# local environments
+.venv/
+.venv_ccd/
+venv/
 __pycache__/
 *.py[cod]
-.venv/
-venv/
+.DS_Store
+
+# raw or source data
+data/raw/
+data/external/
+data/source/
+*.pdf
+*.zip
+
+# legacy outputs
+archive/legacy_outputs/
+outputs/ccd_outputs/
+
+# temporary files
+*.log
+*.tmp
 temp/
+node_modules/

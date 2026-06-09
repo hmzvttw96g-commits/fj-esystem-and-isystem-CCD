@@ -1,0 +1,78 @@
+# I system upgrade keyword dictionary
+# This dictionary supports experimental job-skill pilot collection; it is not a CCD result file.
+
+strong_ai_keywords:
+  - 人工智能
+  - AI
+  - 机器学习
+  - 深度学习
+  - 自然语言处理
+  - NLP
+  - 计算机视觉
+  - CV
+  - 图像识别
+  - 语音识别
+  - 大模型
+  - LLM
+  - AIGC
+  - 推荐算法
+  - 强化学习
+  - 神经网络
+  - 智能算法
+  - 算法工程师
+  - 数据智能
+
+ai_tool_keywords:
+  - TensorFlow
+  - PyTorch
+  - Keras
+  - OpenCV
+  - Transformers
+  - BERT
+  - GPT
+  - LangChain
+  - 向量数据库
+  - 知识图谱
+
+basic_digital_keywords:
+  - Python
+  - SQL
+  - Java
+  - 数据分析
+  - 数据挖掘
+  - 数据建模
+  - 大数据
+  - 云计算
+  - Hadoop
+  - Spark
+  - 数据仓库
+  - 数据治理
+  - 物联网
+  - 工业互联网
+  - 网络安全
+  - 信息安全
+
+industrial_digital_keywords:
+  - 智能制造
+  - 机器视觉
+  - 工业视觉
+  - 自动化控制
+  - 工业软件
+  - MES
+  - ERP
+  - PLC
+  - 数字孪生
+  - 智能工厂
+  - 工业机器人
+  - 智能装备
+  - 数控系统
+
+weak_keywords:
+  - 科技
+  - 智能
+  - 信息
+  - 网络
+  - 数字
+  - 平台
+  - 系统
+  - 互联网

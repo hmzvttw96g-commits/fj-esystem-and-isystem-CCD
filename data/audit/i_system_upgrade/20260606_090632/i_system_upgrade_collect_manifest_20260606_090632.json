@@ -1,0 +1,30 @@
+{
+  "run_id": "20260606_090632",
+  "created_at": "2026-06-06T09:06:32",
+  "target_city": "泉州",
+  "target_years": [
+    2019,
+    2020
+  ],
+  "input_template": "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/interim/i_system_upgrade/latest_i_system_upgrade_job_posting_candidates_template.xlsx",
+  "input_panel_template": "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/panel/i_system_upgrade/latest_i_system_upgrade_job_city_year_panel_template.xlsx",
+  "keywords_file": "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/config/i_system_upgrade_keywords.yml",
+  "source_file": null,
+  "source_file_provided": false,
+  "job_candidate_count": 0,
+  "panel_row_count": 2,
+  "output_files": [
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/interim/i_system_upgrade/20260606_090632/i_system_upgrade_job_posting_candidates_20260606_090632.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/panel/i_system_upgrade/20260606_090632/i_system_upgrade_job_city_year_panel_20260606_090632.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/i_system_upgrade/20260606_090632/i_system_upgrade_collect_manifest_20260606_090632.json",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/interim/i_system_upgrade/latest_i_system_upgrade_job_posting_candidates.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/panel/i_system_upgrade/latest_i_system_upgrade_job_city_year_panel.xlsx"
+  ],
+  "warnings": [
+    "未提供官方/高校/政府历史岗位候选输入文件，本轮只生成待采集输出，不生成岗位事实记录。"
+  ],
+  "legacy_used_as_input": false,
+  "commercial_sources_used_as_primary": false,
+  "experimental_ccd_base_panel_modified": false,
+  "next_step_recommendation": "先采集并人工复核泉州2019/2020官方历史岗位候选；复核通过后再生成 I_index_upgraded 对比面板，不建议现在重跑 CCD。"
+}

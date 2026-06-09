@@ -1,0 +1,41 @@
+{
+  "run_id": "20260606_171940",
+  "created_at": "2026-06-06T17:19:40",
+  "city": "泉州",
+  "years": [
+    2019,
+    2020
+  ],
+  "latest_experimental_base_panel_exists": true,
+  "legacy_used_as_input": false,
+  "ccd_recomputed": false,
+  "commercial_sources_used_as_primary": false,
+  "counts": {
+    "total_job_records": 11,
+    "i_job_included": 7,
+    "e_extension": 1,
+    "g_public": 1,
+    "f_financial": 1,
+    "tech_transfer": 0,
+    "project_evidence": 3,
+    "firm_evidence": 2,
+    "high_priority": 2
+  },
+  "output_files": [
+    "data/interim/i_system_upgrade/20260606_171940/i_system_upgrade_quanzhou_2019_2020_private_digital_official_job_candidates_20260606_171940.xlsx",
+    "data/interim/i_system_upgrade/latest_i_system_upgrade_quanzhou_2019_2020_private_digital_official_job_candidates.xlsx",
+    "data/panel/i_system_upgrade/20260606_171940/i_system_upgrade_quanzhou_2019_2020_private_digital_job_city_year_panel_20260606_171940.xlsx",
+    "data/panel/i_system_upgrade/latest_i_system_upgrade_quanzhou_2019_2020_private_digital_job_city_year_panel.xlsx",
+    "data/interim/system_boundary_audit/20260606_171940/system_boundary_audit_job_record_review_20260606_171940.xlsx",
+    "data/interim/system_boundary_audit/latest_system_boundary_audit_job_record_review.xlsx",
+    "data/interim/system_boundary_audit/20260606_171940/system_boundary_corrected_mapping_template_20260606_171940.xlsx",
+    "data/interim/system_boundary_audit/latest_system_boundary_corrected_mapping_template.xlsx",
+    "data/audit/system_boundary_audit/20260606_171940/system_boundary_audit_report_20260606_171940.md",
+    "data/audit/system_boundary_audit/latest_system_boundary_audit_report.md",
+    "data/audit/system_boundary_audit/20260606_171940/system_boundary_audit_manifest_20260606_171940.json",
+    "outputs/tables/i_system_upgrade/20260606_171940/i_system_upgrade_quanzhou_2019_2020_official_job_candidates_20260606_171940.xlsx",
+    "outputs/tables/i_system_upgrade/20260606_171940/i_system_upgrade_quanzhou_2019_2020_job_city_year_panel_20260606_171940.xlsx"
+  ],
+  "warnings": [],
+  "next_step_recommendation": "先人工复核 I_job 候选 source_url 和附件，再构造 I_index_upgraded_C/B/X；本轮不建议立即重跑 CCD。"
+}

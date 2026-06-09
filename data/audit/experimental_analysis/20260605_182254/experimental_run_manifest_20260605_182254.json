@@ -1,0 +1,107 @@
+{
+  "run_id": "20260605_182254",
+  "created_at": "2026-06-05T18:22:54",
+  "input_files": [
+    "/Users/greenbarry/Desktop/finacial system and educational system CCD/当前数据与CCD实验性分析整理_20260604.xlsx"
+  ],
+  "legacy_input_used": false,
+  "output_files": [
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_analysis/20260605_182254/experimental_data_assets_check_20260605_182254.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/panel/experimental_analysis/20260605_182254/experimental_analysis_base_panel_2019_2024_20260605_182254.csv",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_analysis/20260605_182254/experimental_missing_and_outlier_check_20260605_182254.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/figures/experimental_analysis/20260605_182254/experimental_CCD_D_trend_by_city_20260605_182254.png",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/figures/experimental_analysis/20260605_182254/experimental_CCD_heatmap_city_year_20260605_182254.png",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/figures/experimental_analysis/20260605_182254/experimental_E_I_index_trend_by_city_20260605_182254.png",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/figures/experimental_analysis/20260605_182254/experimental_E_vs_I_scatter_20260605_182254.png",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/tables/experimental_analysis/20260605_182254/experimental_descriptive_statistics_20260605_182254.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/tables/experimental_analysis/20260605_182254/experimental_regression_panel_20260605_182254.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/tables/experimental_analysis/20260605_182254/experimental_regression_results_20260605_182254.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_analysis/20260605_182254/experimental_regression_report_20260605_182254.md",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/tables/experimental_analysis/20260605_182254/experimental_heterogeneity_analysis_20260605_182254.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_analysis/20260605_182254/experimental_analysis_summary_report_20260605_182254.md",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/panel/experimental_analysis/latest_experimental_analysis_base_panel_2019_2024.csv",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_analysis/latest_experimental_analysis_summary_report.md",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_analysis/20260605_182254/experimental_run_manifest_20260605_182254.json"
+  ],
+  "sample_range": {
+    "cities": [
+      "福州",
+      "厦门",
+      "泉州"
+    ],
+    "years": [
+      2019,
+      2024
+    ]
+  },
+  "sample_count": 18,
+  "regression_usable_sample_count": 17,
+  "script": "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/scripts/experimental_analysis_pipeline.py",
+  "parameters": {
+    "missing_fill_zero": false,
+    "data_collection": false,
+    "sample_years": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ]
+  },
+  "warnings": [
+    "前置文件缺失：docs/codex/experimental_analysis_automation.md",
+    "输入文件不在项目目录内，已使用外部原始数据路径：/Users/greenbarry/Desktop/finacial system and educational system CCD/当前数据与CCD实验性分析整理_20260604.xlsx"
+  ],
+  "required_checks": [
+    {
+      "check_item": "厦门 2022 是否 missing_E",
+      "result": true,
+      "details": "E_index 缺失"
+    },
+    {
+      "check_item": "泉州 2019 是否 I_index=0",
+      "result": true,
+      "details": "I_index=0.0"
+    },
+    {
+      "check_item": "泉州 2020 是否 I_index=0",
+      "result": true,
+      "details": "I_index=0.0"
+    },
+    {
+      "check_item": "D=0 是否由 missing 填 0 导致",
+      "result": false,
+      "details": "泉州-2019: E=0.230395, I=0.0, D=0.0, has_missing=False；泉州-2020: E=0.151973, I=0.0, D=0.0, has_missing=False"
+    },
+    {
+      "check_item": "是否有 2025 混入主样本",
+      "result": false,
+      "details": "主样本已限定 2019-2024"
+    },
+    {
+      "check_item": "是否有非福州/厦门/泉州城市混入当前小样本",
+      "result": false,
+      "details": "无"
+    },
+    {
+      "check_item": "是否有 legacy 文件被误用",
+      "result": false,
+      "details": "/Users/greenbarry/Desktop/finacial system and educational system CCD/当前数据与CCD实验性分析整理_20260604.xlsx"
+    },
+    {
+      "check_item": "是否生成 latest 入口",
+      "result": true,
+      "details": "脚本将在写出结果后更新 latest 面板和 latest 报告"
+    },
+    {
+      "check_item": "是否生成 manifest",
+      "result": true,
+      "details": "脚本将在 run_id audit 目录生成 manifest"
+    }
+  ],
+  "notes": [
+    "latest 文件仅作为最近一次结果便捷入口，不作为唯一归档。",
+    "回归仅用于 experimental validation，不得作为正式因果结论。"
+  ]
+}

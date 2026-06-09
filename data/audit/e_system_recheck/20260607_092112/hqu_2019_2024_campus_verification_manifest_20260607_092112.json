@@ -1,0 +1,174 @@
+{
+  "run_id": "20260607_092112",
+  "created_at": "2026-06-07T09:21:12",
+  "years_checked": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "input_files": [
+    "data/interim/e_system_recheck/latest_xiamen_2022_E_B_candidates.xlsx",
+    "data/panel/e_system_recheck/latest_xiamen_2022_E_B_city_year_summary.xlsx",
+    "data/panel/experimental_analysis/latest_experimental_analysis_base_panel_2019_2024.csv",
+    "/Users/greenbarry/Desktop/finacial system and educational system CCD/e-基本口径data/2022年福建省普通高校招生计划（普通类物理科目组）.pdf"
+  ],
+  "sources_checked": [
+    {
+      "source_name": "华侨大学2019年普通高等教育招生章程",
+      "year": 2019,
+      "url": "https://zsc.hqu.edu.cn/info/1024/2732.htm",
+      "source_type": "official_admission_rule",
+      "source_reliability": "official",
+      "usable_for": "2019 校区与学院归属规则",
+      "evidence_summary": "章程列明厦门校区、泉州校区地址及两校区学院分布。"
+    },
+    {
+      "source_name": "华侨大学2020年普通高等教育招生章程",
+      "year": 2020,
+      "url": "https://zsc.hqu.edu.cn/info/1024/3069.htm",
+      "source_type": "official_admission_rule",
+      "source_reliability": "official",
+      "usable_for": "2020 校区与学院归属规则",
+      "evidence_summary": "章程列明计算机科学与技术学院在厦门校区，工学院在泉州校区。"
+    },
+    {
+      "source_name": "华侨大学2021年普通高等教育招生章程",
+      "year": 2021,
+      "url": "https://zsc.hqu.edu.cn/info/1024/3431.htm",
+      "source_type": "official_admission_rule",
+      "source_reliability": "official",
+      "usable_for": "2021 校区与学院归属规则",
+      "evidence_summary": "章程列明计算机科学与技术学院在厦门校区，工学院在泉州校区。"
+    },
+    {
+      "source_name": "华侨大学2021年普高招生专业目录（境内版）",
+      "year": 2021,
+      "url": "https://zsc.hqu.edu.cn/info/1024/3459.htm",
+      "source_type": "official_major_directory",
+      "source_reliability": "official",
+      "usable_for": "2021 专业-学院-校区映射",
+      "evidence_summary": "目录列示工学院(泉州校区)与计算机科学与技术学院(厦门校区)的相关专业。"
+    },
+    {
+      "source_name": "华侨大学2023年境内本科招生信息列表",
+      "year": 2023,
+      "url": "https://zsc.hqu.edu.cn/zsxx/jnbkzsxx/nzsxx2023.htm",
+      "source_type": "official_admission_index",
+      "source_reliability": "official",
+      "usable_for": "定位 2023 章程和专业目录",
+      "evidence_summary": "官方列表包含 2023 年普通高等教育招生章程及 2023 年普高招生专业目录。"
+    },
+    {
+      "source_name": "华侨大学2023年普高招生专业目录（境内版）",
+      "year": 2023,
+      "url": "https://zsc.hqu.edu.cn/info/1024/3679.htm",
+      "source_type": "official_major_directory",
+      "source_reliability": "official",
+      "usable_for": "2023 专业-学院-校区映射",
+      "evidence_summary": "官方招生信息列表指向该专业目录；网页检索摘要显示该目录按学院和校区列示。"
+    },
+    {
+      "source_name": "华侨大学2024年普通高等教育招生章程",
+      "year": 2024,
+      "url": "https://zsc.hqu.edu.cn/info/1024/7422.htm",
+      "source_type": "official_admission_rule",
+      "source_reliability": "official",
+      "usable_for": "2024 校区与跨校区培养规则",
+      "evidence_summary": "章程列明计算机科学与技术学院人工智能专业大一在泉州、一年后回厦门。"
+    },
+    {
+      "source_name": "华侨大学2024年普高本科招生专业目录（境内版）",
+      "year": 2024,
+      "url": "https://zsc.hqu.edu.cn/info/1024/7462.htm",
+      "source_type": "official_major_directory",
+      "source_reliability": "official",
+      "usable_for": "2024 专业目录定位与人工复核",
+      "evidence_summary": "官方问答与招生信息指向该目录；用于后续人工核验。"
+    },
+    {
+      "source_name": "华侨大学招生网学院介绍：计算机科学与技术学院",
+      "year": "current",
+      "url": "https://zsc.hqu.edu.cn/xyjs/jsjkxyjsxy.htm",
+      "source_type": "official_college_page",
+      "source_reliability": "official",
+      "usable_for": "计算机科学与技术学院相关专业校区核验",
+      "evidence_summary": "招生网学院介绍显示计算机科学与技术学院在厦门校区，专业含软件工程、计算机科学与技术、信息安全、人工智能。"
+    },
+    {
+      "source_name": "华侨大学招生网学院介绍汇总页",
+      "year": "current",
+      "url": "https://zsc.hqu.edu.cn/xyjs.htm",
+      "source_type": "official_college_page",
+      "source_reliability": "official",
+      "usable_for": "工学院、机电及自动化学院等学院校区核验",
+      "evidence_summary": "招生网学院介绍汇总显示工学院在泉州校区，机电及自动化学院在厦门校区。"
+    }
+  ],
+  "hqu_records_checked_count": 12,
+  "local_hqu_plan_records_checked_count": 7,
+  "confirmed_xiamen_count": 4,
+  "confirmed_xiamen_plan_total": 70,
+  "confirmed_quanzhou_count": 2,
+  "confirmed_quanzhou_plan_total": 42,
+  "uncertain_count": 5,
+  "uncertain_plan_total": 0,
+  "xiamen_year_totals": {
+    "2019": {
+      "strict_public_without_uncertain_hqu": 495.0,
+      "public_with_confirmed_hqu_xiamen": 495.0
+    },
+    "2020": {
+      "strict_public_without_uncertain_hqu": 559.0,
+      "public_with_confirmed_hqu_xiamen": 559.0
+    },
+    "2021": {
+      "strict_public_without_uncertain_hqu": 3511.0,
+      "public_with_confirmed_hqu_xiamen": 3511.0
+    },
+    "2022": {
+      "strict_public_without_uncertain_hqu": 634.0,
+      "public_with_confirmed_hqu_xiamen": 704.0
+    },
+    "2023": {
+      "strict_public_without_uncertain_hqu": 3670.0,
+      "public_with_confirmed_hqu_xiamen": 3670.0
+    },
+    "2024": {
+      "strict_public_without_uncertain_hqu": 2799.0,
+      "public_with_confirmed_hqu_xiamen": 2799.0
+    }
+  },
+  "quanzhou_hqu_candidate_year_totals": {
+    "2019": 0.0,
+    "2020": 0.0,
+    "2021": 0.0,
+    "2022": 42.0,
+    "2023": 0.0,
+    "2024": 0.0
+  },
+  "manual_review_required_count": 5,
+  "output_files": [
+    "data/interim/e_system_recheck/20260607_092112/hqu_2019_2024_ai_major_campus_verification_20260607_092112.xlsx",
+    "data/interim/e_system_recheck/latest_hqu_2019_2024_ai_major_campus_verification.xlsx",
+    "data/panel/e_system_recheck/20260607_092112/xiamen_2019_2024_E_B_reclassified_by_hqu_campus_20260607_092112.xlsx",
+    "data/panel/e_system_recheck/latest_xiamen_2019_2024_E_B_reclassified_by_hqu_campus.xlsx",
+    "data/panel/e_system_recheck/20260607_092112/quanzhou_2019_2024_E_B_hqu_quanzhou_candidate_20260607_092112.xlsx",
+    "data/panel/e_system_recheck/latest_quanzhou_2019_2024_E_B_hqu_quanzhou_candidate.xlsx",
+    "data/audit/e_system_recheck/20260607_092112/hqu_2019_2024_campus_verification_report_20260607_092112.md",
+    "data/audit/e_system_recheck/latest_hqu_2019_2024_campus_verification_report.md"
+  ],
+  "warnings": [
+    "本地未发现 2019 年华侨大学 E_B 候选明细或招生计划 PDF，已标记 source_gap/manual_review。",
+    "本地未发现 2020 年华侨大学 E_B 候选明细或招生计划 PDF，已标记 source_gap/manual_review。",
+    "本地未发现 2021 年华侨大学 E_B 候选明细或招生计划 PDF，已标记 source_gap/manual_review。",
+    "本地未发现 2023 年华侨大学 E_B 候选明细或招生计划 PDF，已标记 source_gap/manual_review。",
+    "本地未发现 2024 年华侨大学 E_B 候选明细或招生计划 PDF，已标记 source_gap/manual_review。",
+    "未直接读取 archive/legacy_outputs；legacy 文件未作为本轮输入。",
+    "本轮不重算 CCD，不覆盖 latest experimental base panel。",
+    "未找到可直接读取的 2022 年华侨大学官方招生章程；2022 计划数来自福建省招生计划册，校区判定结合华侨大学官方章程、专业目录和学院介绍。"
+  ],
+  "next_step_recommendation": "人工确认后，先更新 E 端候选底表；再重跑 experimental_analysis_pipeline 和 caliber test。"
+}
