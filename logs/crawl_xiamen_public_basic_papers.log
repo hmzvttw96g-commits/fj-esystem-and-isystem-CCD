@@ -1,0 +1,249 @@
+2026-06-08 17:44:06,648 | INFO | Start crawling Xiamen public basic papers
+2026-06-08 17:44:06,648 | INFO | Search query: 2022 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 17:44:06,658 | WARNING | Search failed 2022 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,658 | INFO | Search query: 2022 公共基础知识综合卷
+2026-06-08 17:44:06,659 | WARNING | Search failed 2022 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,659 | INFO | Search query: 2022 中职学考公共基础数学
+2026-06-08 17:44:06,659 | WARNING | Search failed 2022 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,659 | INFO | Search query: 2022 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 17:44:06,659 | WARNING | Search failed 2022 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,660 | INFO | Search query: 2022 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 17:44:06,660 | WARNING | Search failed 2022 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,660 | INFO | Search query: 2023 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 17:44:06,660 | WARNING | Search failed 2023 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,660 | INFO | Search query: 2023 公共基础知识综合卷
+2026-06-08 17:44:06,661 | WARNING | Search failed 2023 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,661 | INFO | Search query: 2023 中职学考公共基础数学
+2026-06-08 17:44:06,661 | WARNING | Search failed 2023 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,661 | INFO | Search query: 2023 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 17:44:06,661 | WARNING | Search failed 2023 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,662 | INFO | Search query: 2023 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 17:44:06,662 | WARNING | Search failed 2023 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,662 | INFO | Search query: 2024 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 17:44:06,662 | WARNING | Search failed 2024 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,662 | INFO | Search query: 2024 公共基础知识综合卷
+2026-06-08 17:44:06,663 | WARNING | Search failed 2024 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,663 | INFO | Search query: 2024 中职学考公共基础数学
+2026-06-08 17:44:06,663 | WARNING | Search failed 2024 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,663 | INFO | Search query: 2024 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 17:44:06,663 | WARNING | Search failed 2024 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,663 | INFO | Search query: 2024 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 17:44:06,664 | WARNING | Search failed 2024 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,664 | INFO | Search query: 2025 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 17:44:06,664 | WARNING | Search failed 2025 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,664 | INFO | Search query: 2025 公共基础知识综合卷
+2026-06-08 17:44:06,664 | WARNING | Search failed 2025 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,665 | INFO | Search query: 2025 中职学考公共基础数学
+2026-06-08 17:44:06,665 | WARNING | Search failed 2025 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,665 | INFO | Search query: 2025 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 17:44:06,665 | WARNING | Search failed 2025 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,665 | INFO | Search query: 2025 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 17:44:06,666 | WARNING | Search failed 2025 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 17:44:06,670 | INFO | Output /Users/greenbarry/Documents/Codex/2026-06-08/files-mentioned-by-the-user-11/outputs/fj_zhongzhi_public_math_project/data/processed/xiamen_public_basic_sources.xlsx with 4 rows
+2026-06-08 17:44:06,671 | WARNING | No downloaded Xiamen public basic mock paper was verified in this run.
+2026-06-08 17:45:59,351 | INFO | Start crawling Xiamen public basic papers
+2026-06-08 17:45:59,351 | INFO | Search query: 2022 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 17:46:01,541 | INFO | Search query: 2022 公共基础知识综合卷
+2026-06-08 17:46:03,698 | INFO | Search query: 2022 中职学考公共基础数学
+2026-06-08 17:46:05,947 | INFO | Search query: 2022 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 17:46:08,205 | INFO | Search query: 2022 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 17:46:10,553 | INFO | Search query: 2023 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 17:46:12,811 | INFO | Search query: 2023 公共基础知识综合卷
+2026-06-08 17:46:14,975 | INFO | Search query: 2023 中职学考公共基础数学
+2026-06-08 17:46:17,169 | INFO | Search query: 2023 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 17:46:19,363 | INFO | Search query: 2023 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 17:46:21,585 | INFO | Search query: 2024 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 17:46:23,758 | INFO | Search query: 2024 公共基础知识综合卷
+2026-06-08 17:46:26,016 | INFO | Search query: 2024 中职学考公共基础数学
+2026-06-08 17:46:28,161 | INFO | Search query: 2024 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 17:46:30,400 | INFO | Search query: 2024 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 17:46:32,568 | INFO | Search query: 2025 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 17:46:34,739 | INFO | Search query: 2025 公共基础知识综合卷
+2026-06-08 17:46:36,953 | INFO | Search query: 2025 中职学考公共基础数学
+2026-06-08 17:46:39,201 | INFO | Search query: 2025 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 17:46:41,379 | INFO | Search query: 2025 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 17:46:43,549 | INFO | Output /Users/greenbarry/Documents/Codex/2026-06-08/files-mentioned-by-the-user-11/outputs/fj_zhongzhi_public_math_project/data/processed/xiamen_public_basic_sources.xlsx with 4 rows
+2026-06-08 17:46:43,550 | WARNING | No downloaded Xiamen public basic mock paper was verified in this run.
+2026-06-08 21:08:49,997 | INFO | Start crawling Xiamen public basic papers
+2026-06-08 21:08:49,999 | INFO | Search query: 2022 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:08:52,198 | INFO | Search query: 2022 公共基础知识综合卷
+2026-06-08 21:08:54,330 | INFO | Search query: 2022 中职学考公共基础数学
+2026-06-08 21:08:56,547 | INFO | Search query: 2022 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:08:58,807 | INFO | Search query: 2022 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:09:00,956 | INFO | Search query: 2023 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:09:03,104 | INFO | Search query: 2023 公共基础知识综合卷
+2026-06-08 21:09:05,315 | INFO | Search query: 2023 中职学考公共基础数学
+2026-06-08 21:09:07,510 | INFO | Search query: 2023 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:09:09,761 | INFO | Search query: 2023 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:09:11,996 | INFO | Search query: 2024 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:09:14,221 | INFO | Search query: 2024 公共基础知识综合卷
+2026-06-08 21:09:16,372 | INFO | Search query: 2024 中职学考公共基础数学
+2026-06-08 21:09:18,676 | INFO | Search query: 2024 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:09:20,886 | INFO | Search query: 2024 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:09:23,047 | INFO | Search query: 2025 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:09:25,291 | INFO | Search query: 2025 公共基础知识综合卷
+2026-06-08 21:09:27,445 | INFO | Search query: 2025 中职学考公共基础数学
+2026-06-08 21:09:29,728 | INFO | Search query: 2025 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:09:31,970 | INFO | Search query: 2025 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:09:34,128 | INFO | Search query: 2026 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:09:36,387 | INFO | Search query: 2026 公共基础知识综合卷
+2026-06-08 21:09:38,639 | INFO | Search query: 2026 中职学考公共基础数学
+2026-06-08 21:09:40,783 | INFO | Search query: 2026 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:09:43,046 | INFO | Search query: 2026 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:09:45,404 | INFO | Output /Users/greenbarry/Documents/Codex/2026-06-08/files-mentioned-by-the-user-11/outputs/fj_zhongzhi_public_math_project/data/processed/xiamen_public_basic_sources.xlsx with 8 rows
+2026-06-08 21:29:47,324 | INFO | Start crawling Xiamen public basic papers
+2026-06-08 21:29:47,324 | INFO | Search query: 2022 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:29:47,334 | WARNING | Search failed 2022 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,334 | INFO | Search query: 2022 公共基础知识综合卷
+2026-06-08 21:29:47,335 | WARNING | Search failed 2022 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,335 | INFO | Search query: 2022 中职学考公共基础数学
+2026-06-08 21:29:47,335 | WARNING | Search failed 2022 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,335 | INFO | Search query: 2022 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:29:47,336 | WARNING | Search failed 2022 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,336 | INFO | Search query: 2022 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:29:47,336 | WARNING | Search failed 2022 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,337 | INFO | Search query: 2023 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:29:47,337 | WARNING | Search failed 2023 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,337 | INFO | Search query: 2023 公共基础知识综合卷
+2026-06-08 21:29:47,337 | WARNING | Search failed 2023 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,337 | INFO | Search query: 2023 中职学考公共基础数学
+2026-06-08 21:29:47,338 | WARNING | Search failed 2023 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,338 | INFO | Search query: 2023 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:29:47,338 | WARNING | Search failed 2023 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,338 | INFO | Search query: 2023 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:29:47,339 | WARNING | Search failed 2023 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,339 | INFO | Search query: 2024 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:29:47,339 | WARNING | Search failed 2024 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,339 | INFO | Search query: 2024 公共基础知识综合卷
+2026-06-08 21:29:47,339 | WARNING | Search failed 2024 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,339 | INFO | Search query: 2024 中职学考公共基础数学
+2026-06-08 21:29:47,340 | WARNING | Search failed 2024 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,340 | INFO | Search query: 2024 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:29:47,340 | WARNING | Search failed 2024 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,340 | INFO | Search query: 2024 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:29:47,341 | WARNING | Search failed 2024 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,341 | INFO | Search query: 2025 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:29:47,341 | WARNING | Search failed 2025 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,341 | INFO | Search query: 2025 公共基础知识综合卷
+2026-06-08 21:29:47,341 | WARNING | Search failed 2025 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,342 | INFO | Search query: 2025 中职学考公共基础数学
+2026-06-08 21:29:47,342 | WARNING | Search failed 2025 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,342 | INFO | Search query: 2025 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:29:47,342 | WARNING | Search failed 2025 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,342 | INFO | Search query: 2025 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:29:47,343 | WARNING | Search failed 2025 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,343 | INFO | Search query: 2026 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:29:47,343 | WARNING | Search failed 2026 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,343 | INFO | Search query: 2026 公共基础知识综合卷
+2026-06-08 21:29:47,343 | WARNING | Search failed 2026 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,344 | INFO | Search query: 2026 中职学考公共基础数学
+2026-06-08 21:29:47,344 | WARNING | Search failed 2026 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,344 | INFO | Search query: 2026 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:29:47,344 | WARNING | Search failed 2026 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,344 | INFO | Search query: 2026 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:29:47,345 | WARNING | Search failed 2026 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:29:47,350 | INFO | Output /Users/greenbarry/Documents/Codex/2026-06-08/files-mentioned-by-the-user-11/outputs/fj_zhongzhi_public_math_project/data/processed/xiamen_public_basic_sources.xlsx with 8 rows
+2026-06-08 21:34:06,586 | INFO | Start crawling Xiamen public basic papers
+2026-06-08 21:34:06,587 | INFO | Search query: 2022 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:34:06,598 | WARNING | Search failed 2022 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,598 | INFO | Search query: 2022 公共基础知识综合卷
+2026-06-08 21:34:06,599 | WARNING | Search failed 2022 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,599 | INFO | Search query: 2022 中职学考公共基础数学
+2026-06-08 21:34:06,599 | WARNING | Search failed 2022 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,599 | INFO | Search query: 2022 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:34:06,599 | WARNING | Search failed 2022 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,600 | INFO | Search query: 2022 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:34:06,600 | WARNING | Search failed 2022 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,600 | INFO | Search query: 2023 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:34:06,600 | WARNING | Search failed 2023 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,601 | INFO | Search query: 2023 公共基础知识综合卷
+2026-06-08 21:34:06,601 | WARNING | Search failed 2023 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,601 | INFO | Search query: 2023 中职学考公共基础数学
+2026-06-08 21:34:06,601 | WARNING | Search failed 2023 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,602 | INFO | Search query: 2023 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:34:06,602 | WARNING | Search failed 2023 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,602 | INFO | Search query: 2023 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:34:06,602 | WARNING | Search failed 2023 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,602 | INFO | Search query: 2024 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:34:06,603 | WARNING | Search failed 2024 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,603 | INFO | Search query: 2024 公共基础知识综合卷
+2026-06-08 21:34:06,603 | WARNING | Search failed 2024 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,603 | INFO | Search query: 2024 中职学考公共基础数学
+2026-06-08 21:34:06,603 | WARNING | Search failed 2024 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,603 | INFO | Search query: 2024 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:34:06,604 | WARNING | Search failed 2024 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,604 | INFO | Search query: 2024 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:34:06,604 | WARNING | Search failed 2024 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,604 | INFO | Search query: 2025 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:34:06,605 | WARNING | Search failed 2025 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,605 | INFO | Search query: 2025 公共基础知识综合卷
+2026-06-08 21:34:06,605 | WARNING | Search failed 2025 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,605 | INFO | Search query: 2025 中职学考公共基础数学
+2026-06-08 21:34:06,605 | WARNING | Search failed 2025 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,606 | INFO | Search query: 2025 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:34:06,606 | WARNING | Search failed 2025 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,606 | INFO | Search query: 2025 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:34:06,606 | WARNING | Search failed 2025 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,606 | INFO | Search query: 2026 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:34:06,607 | WARNING | Search failed 2026 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,607 | INFO | Search query: 2026 公共基础知识综合卷
+2026-06-08 21:34:06,607 | WARNING | Search failed 2026 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,607 | INFO | Search query: 2026 中职学考公共基础数学
+2026-06-08 21:34:06,607 | WARNING | Search failed 2026 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,608 | INFO | Search query: 2026 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:34:06,608 | WARNING | Search failed 2026 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,608 | INFO | Search query: 2026 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:34:06,608 | WARNING | Search failed 2026 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:34:06,614 | INFO | Output /Users/greenbarry/Documents/Codex/2026-06-08/files-mentioned-by-the-user-11/outputs/fj_zhongzhi_public_math_project/data/processed/xiamen_public_basic_sources.xlsx with 8 rows
+2026-06-08 21:35:22,850 | INFO | Start crawling Xiamen public basic papers
+2026-06-08 21:35:22,850 | INFO | Search query: 2022 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:35:22,859 | WARNING | Search failed 2022 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,859 | INFO | Search query: 2022 公共基础知识综合卷
+2026-06-08 21:35:22,859 | WARNING | Search failed 2022 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,860 | INFO | Search query: 2022 中职学考公共基础数学
+2026-06-08 21:35:22,860 | WARNING | Search failed 2022 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,860 | INFO | Search query: 2022 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:35:22,860 | WARNING | Search failed 2022 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,860 | INFO | Search query: 2022 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:35:22,861 | WARNING | Search failed 2022 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,861 | INFO | Search query: 2023 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:35:22,861 | WARNING | Search failed 2023 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,861 | INFO | Search query: 2023 公共基础知识综合卷
+2026-06-08 21:35:22,861 | WARNING | Search failed 2023 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,862 | INFO | Search query: 2023 中职学考公共基础数学
+2026-06-08 21:35:22,862 | WARNING | Search failed 2023 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,862 | INFO | Search query: 2023 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:35:22,862 | WARNING | Search failed 2023 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,862 | INFO | Search query: 2023 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:35:22,863 | WARNING | Search failed 2023 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,863 | INFO | Search query: 2024 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:35:22,863 | WARNING | Search failed 2024 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,863 | INFO | Search query: 2024 公共基础知识综合卷
+2026-06-08 21:35:22,864 | WARNING | Search failed 2024 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,864 | INFO | Search query: 2024 中职学考公共基础数学
+2026-06-08 21:35:22,864 | WARNING | Search failed 2024 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,864 | INFO | Search query: 2024 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:35:22,865 | WARNING | Search failed 2024 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,865 | INFO | Search query: 2024 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:35:22,865 | WARNING | Search failed 2024 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,865 | INFO | Search query: 2025 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:35:22,865 | WARNING | Search failed 2025 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,865 | INFO | Search query: 2025 公共基础知识综合卷
+2026-06-08 21:35:22,866 | WARNING | Search failed 2025 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,866 | INFO | Search query: 2025 中职学考公共基础数学
+2026-06-08 21:35:22,866 | WARNING | Search failed 2025 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,866 | INFO | Search query: 2025 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:35:22,866 | WARNING | Search failed 2025 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,867 | INFO | Search query: 2025 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:35:22,867 | WARNING | Search failed 2025 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,867 | INFO | Search query: 2026 厦门市中等职业学校学业水平考试 公共基础
+2026-06-08 21:35:22,867 | WARNING | Search failed 2026 厦门市中等职业学校学业水平考试 公共基础: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,868 | INFO | Search query: 2026 公共基础知识综合卷
+2026-06-08 21:35:22,868 | WARNING | Search failed 2026 公共基础知识综合卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,868 | INFO | Search query: 2026 中职学考公共基础数学
+2026-06-08 21:35:22,869 | WARNING | Search failed 2026 中职学考公共基础数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,869 | INFO | Search query: 2026 厦门 中职 公共基础 模拟卷 数学
+2026-06-08 21:35:22,869 | WARNING | Search failed 2026 厦门 中职 公共基础 模拟卷 数学: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,869 | INFO | Search query: 2026 厦门市 中职 学考 公共基础知识 模拟试卷
+2026-06-08 21:35:22,870 | WARNING | Search failed 2026 厦门市 中职 学考 公共基础知识 模拟试卷: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+2026-06-08 21:35:22,876 | INFO | Output /Users/greenbarry/Documents/Codex/2026-06-08/files-mentioned-by-the-user-11/outputs/fj_zhongzhi_public_math_project/data/processed/xiamen_public_basic_sources.xlsx with 8 rows
