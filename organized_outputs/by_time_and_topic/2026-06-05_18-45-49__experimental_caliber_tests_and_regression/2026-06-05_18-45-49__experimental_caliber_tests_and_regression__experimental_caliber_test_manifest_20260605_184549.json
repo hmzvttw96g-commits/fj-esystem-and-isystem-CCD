@@ -1,0 +1,49 @@
+{
+  "run_id": "20260605_184549",
+  "created_at": "2026-06-05T18:45:49",
+  "input_file": "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/panel/experimental_analysis/latest_experimental_analysis_base_panel_2019_2024.csv",
+  "input_file_exists": true,
+  "summary_report": "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_analysis/latest_experimental_analysis_summary_report.md",
+  "legacy_used": false,
+  "calibers": [
+    {
+      "caliber_name": "baseline_full_sample",
+      "sample_size": 17
+    },
+    {
+      "caliber_name": "exclude_zero_index",
+      "sample_size": 15
+    },
+    {
+      "caliber_name": "post_2021_sample",
+      "sample_size": 11
+    },
+    {
+      "caliber_name": "balanced_years_only",
+      "sample_size": 15
+    },
+    {
+      "caliber_name": "non_missing_nonzero",
+      "sample_size": 15
+    },
+    {
+      "caliber_name": "industry_lag_focus",
+      "sample_size": 12
+    }
+  ],
+  "output_files": [
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/tables/experimental_caliber_tests/20260605_184549/experimental_caliber_test_results_20260605_184549.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/tables/experimental_caliber_tests/20260605_184549/experimental_caliber_regression_results_20260605_184549.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/figures/experimental_caliber_tests/20260605_184549/experimental_caliber_D_comparison_20260605_184549.png",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/figures/experimental_caliber_tests/20260605_184549/experimental_caliber_city_mean_D_20260605_184549.png",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/figures/experimental_caliber_tests/20260605_184549/experimental_caliber_lag_type_distribution_20260605_184549.png",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_caliber_tests/20260605_184549/experimental_caliber_test_report_20260605_184549.md",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_caliber_tests/latest_experimental_caliber_test_report.md",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/outputs/tables/experimental_caliber_tests/latest_experimental_caliber_test_results.xlsx",
+    "/Users/greenbarry/Documents/Codex/2026-06-04/imported-codex-24/data/audit/experimental_caliber_tests/20260605_184549/experimental_caliber_test_manifest_20260605_184549.json"
+  ],
+  "warnings": [
+    "输入面板缺少 can_use_for_caliber_test，已按 E_index/I_index/D 非缺失临时派生，未写回 latest 面板。"
+  ],
+  "next_step_recommendation": "1. baseline_full_sample 的 mean_D=0.527，三市路径仍呈福州较稳步提升、厦门高位跃迁但有缺失、泉州低位波动的格局，支持当前论文方向的实验性描述。\n2. 剔除泉州 2019、2020 的 0 值后，mean_D 从 0.527 变为 0.597；路径差异仍存在，但泉州低位特征会被弱化，因此 0 值样本是解释泉州早期低位的重要来源。\n3. 只看 2021 年以后，mean_D=0.662，福州、厦门、泉州仍有差异；但样本更少，不能扩大解释。\n4. 厦门 2022 缺失导致 balanced_years_only 会排除 2022，这会影响城市年度比较的连续性，但不改变已有年份的方向性判断。\n5. industry_lag_focus 样本量为 12，baseline 中 industry_lag_count=12，产业承接滞后判断在多数可计算样本中存在，但仍需结合 I 端口径复核。\n6. 可写入实验性发现的是：三市 CCD 路径存在分化、福州整体改善较明显、厦门高协调年份较突出但存在 2022 缺失、泉州早期受 I 端低值影响明显。\n7. 不能写成正式论文结论的是：任何因果关系、精确政策效果、以及基于小样本回归显著性的强推断。\n8. 下一步必须补数据，尤其是缺失和 0 值敏感样本。\n9. 优先补厦门 2022 E 端，并复核泉州 2019、2020 I 端企业/专利候选口径。\n补充：成功运行模型 23 个；发生路径分类变化的口径-城市组合 3 个。"
+}
