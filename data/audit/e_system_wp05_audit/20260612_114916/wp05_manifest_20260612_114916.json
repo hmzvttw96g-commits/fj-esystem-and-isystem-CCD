@@ -1,0 +1,17 @@
+{
+  "run_id": "20260612_114916",
+  "generated_at": "2026-06-12T11:49:16.355876",
+  "task": "WP0.5 pilot数据审计：重复值审计 + E端抽取完备性核查",
+  "inputs": [
+    "/Users/greenbarry/Desktop/finacial system and educational system CCD/当前数据与CCD实验性分析整理_20260604.xlsx",
+    "data/panel/experimental_analysis/latest_experimental_analysis_base_panel_2019_2024.csv",
+    "data/panel/e_system_recheck/latest_E_B_three_city_2019_2024_completed_panel.xlsx"
+  ],
+  "outputs": [
+    "data/audit/e_system_wp05_audit/20260612_114916/wp05_e_index_consistency_check_20260612_114916.csv",
+    "data/audit/e_system_wp05_audit/20260612_114916/wp05_school_year_value_audit_20260612_114916.csv",
+    "data/audit/e_system_wp05_audit/20260612_114916/wp05_extraction_coverage_matrix_20260612_114916.csv",
+    "data/audit/e_system_wp05_audit/20260612_114916/wp05_e_system_audit_report_20260612_114916.md"
+  ],
+  "no_overwrite": "本轮不修改 latest experimental base panel 与 completed panel，仅产出审计结论"
+}
