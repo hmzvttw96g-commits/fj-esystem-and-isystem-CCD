@@ -1,0 +1,48 @@
+# I_patent 专利申请口径配置（C/B/X 三套，严格嵌套，按 IPC 前缀匹配）
+# 状态：v1.0 草案。冻结前须对照国家知识产权局《数字经济核心产业分类与
+# 国际专利分类参照关系表（2023）》与 WIPO AI 分类人工复核 IPC 清单
+# 主口径角色：I_patent 为 I_index 双模块主口径之一（框架 v1.1 决定）
+
+meta:
+  version: "1.0-draft"
+  frozen: false
+  match_rule: "IPC 主分类号或任一分类号前缀命中即计入；同族/同申请去重后按申请号计一件"
+  reference: ["国家知识产权局《数字经济核心产业分类与国际专利分类参照关系表(2023)》", "WIPO Technology Trends: AI taxonomy"]
+
+C_conservative:
+  label: "保守口径：AI 核心技术专利"
+  ipc_prefixes:
+    - {code: G06N, desc: 基于特定计算模型的计算机系统（机器学习/神经网络核心）}
+    - {code: G06V, desc: 图像或视频识别（2022年新设）}
+    - {code: G06F18, desc: 模式识别（2023年由G06K9迁移）}
+    - {code: G06F40, desc: 自然语言处理}
+    - {code: G10L15, desc: 语音识别}
+    - {code: G10L17, desc: 说话人识别}
+  legacy_code_handling: "2022年前申请须同时检索 G06K9（旧模式识别码）并与 G06V/G06F18 去重——跨年份口径一致性的关键步骤"
+
+B_basic:
+  label: "基本口径：AI + 数字技术专利（主口径）"
+  includes: C_conservative
+  additional_ipc_prefixes:
+    - {code: G06F, desc: 电数字数据处理（含G06F16信息检索等）}
+    - {code: G06Q, desc: 数据处理系统/数字商业方法}
+    - {code: G06T, desc: 图像数据处理}
+    - {code: G16Y, desc: 物联网信息通信技术}
+    - {code: H04L, desc: 数字信息传输（含网络安全H04L9）}
+
+X_expanded:
+  label: "扩大口径：B + 智能制造/机器人/控制"
+  includes: B_basic
+  additional_ipc_prefixes:
+    - {code: B25J, desc: 机械手/机器人}
+    - {code: G05B, desc: 控制或调节系统}
+    - {code: G05D, desc: 非电变量的控制或调节}
+    - {code: H04W, desc: 无线通信网络}
+
+structural_rules:
+  count_basis: "申请量按申请日年份计（规避授权时滞，与框架一致）"
+  patent_types: {main: 发明 + 实用新型, robustness: 仅发明, exclude: 外观设计}
+  applicant_rule: "按第一申请人归属：第一申请人为企业→计入；为高校/科研院所→剔除（校企联合以第一申请人为准，框架v1.1）；为个人→主口径剔除、稳健性纳入"
+  university_exclusion: "高校/科研院所识别：教育部高校名单精确匹配 + 名称正则（大学|学院|研究院|研究所|科学院）+ 人工白名单复核（防'XX研究院有限公司'误杀——名称含'有限公司/有限责任公司'的不剔除）"
+  city_attribution: "第一申请人地址字段归地级市；地址缺失时用企业注册地兜底，兜底记录单独标记"
+  per_capita: "进入指数前除以城市常住人口（框架 v1.1）"

@@ -1,0 +1,36 @@
+# I_job 岗位证据口径配置（C/B/X 三套，严格嵌套）
+# 状态：v1.0 草案。角色：2021—2024 子样本稳健性模块（框架 v1.1 降级决定，不进主口径）
+# 关键词层引用 config/i_system_upgrade_keywords.yml；
+# 口径定义与 docs/i_system_upgrade/i_system_upgrade_indicator_design.md 的 I_upgrade_C/B/X 对齐
+
+meta:
+  version: "1.0-draft"
+  frozen: false
+  role: "robustness_module_2021_2024_only"
+  keyword_source: "config/i_system_upgrade_keywords.yml"
+  boundary_protocol: "三步判定法 v2（employer_sector → job_function → system_mapping），高校岗→E_extension、金融岗→F_candidate、政府事业岗→G，均不计入 I_job"
+
+C_conservative:
+  label: "保守口径：强AI岗位"
+  job_classes: [ai_job_strong, ai_job_tool_based]
+  keyword_tiers: [strong_ai_keywords, ai_tool_keywords]
+
+B_basic:
+  label: "基本口径：强AI + 数字技术岗位"
+  includes: C_conservative
+  additional_job_classes: [digital_tech_job]
+  additional_keyword_tiers: [basic_digital_keywords]
+
+X_expanded:
+  label: "扩大口径：B + 工业数字化岗位"
+  includes: B_basic
+  additional_job_classes: [industrial_digital_job]
+  additional_keyword_tiers: [industrial_digital_keywords]
+
+structural_rules:
+  time_attribution: "岗位按公告发布日期归年份；禁止用当前页面倒填历史年份（须有历史发布时间或归档证据）"
+  source_hierarchy: {main: [官方公共就业网, 人社局公告, 高校就业网历史页面], supplement: 商业平台岗位（supplement_candidate单列，不入主计数）}
+  evidence_rule: "项目公告→I_project_evidence、企业名单→I_firm_evidence，不得伪装岗位证据"
+  dedupe: "同来源同公告同岗位名同年份去重；跨来源重复以官方源优先"
+  f_candidate_byproduct: "边界分流到 F 端的岗位自动落表 F_candidate（论文B佐证变量）"
+  weak_keywords_usage: "weak_keywords 仅触发人工复核，禁止计数"

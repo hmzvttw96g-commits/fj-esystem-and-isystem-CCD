@@ -1,0 +1,81 @@
+# 福建省本科高校参照名单（E端完备性检查 + 抽取归一化共用输入）
+# 状态：v1.0 草案，基于教育部《全国普通高等学校名单》域内知识整理
+# ⚠ 冻结前必须人工对照教育部最新名单逐校复核（confidence 字段标注当前把握）
+# 用途：
+#   1. 完备性闸门：每个城市-年份，本表 ownership=public 且 expect_B_majors=yes 的学校
+#      零命中时自动生成核查任务，人工确认"真零"前禁止入面板
+#   2. 抽取归一化：school_name_history 提供曾用名匹配（WP0.5 已证实福建工程学院因更名漏抽4年）
+# 新型大学说明：福耀科技大学 2024 年设立、2025 年首招，超出 2015—2024 窗口，暂不列入
+
+meta:
+  version: "1.0-draft"
+  frozen: false
+  level_scope: 本科（含职业本科）；专科院校不在本表
+  verify_against: "教育部《全国普通高等学校名单》最新版 + 各校当年招生章程"
+
+schools:
+  # ---------- 福州 ----------
+  - {name: 福州大学, city: 福州, ownership: public, expect_B_majors: yes, confidence: high}
+  - {name: 福建师范大学, city: 福州, ownership: public, expect_B_majors: yes, confidence: high}
+  - {name: 福建农林大学, city: 福州, ownership: public, expect_B_majors: yes, confidence: high}
+  - {name: 福建医科大学, city: 福州, ownership: public, expect_B_majors: no, confidence: high,
+     note: 医学信息工程是否入X待裁定（pending_ruling）}
+  - {name: 福建中医药大学, city: 福州, ownership: public, expect_B_majors: yes, confidence: high}
+  - {name: 福建理工大学, city: 福州, ownership: public, expect_B_majors: yes, confidence: high,
+     school_name_history: [{former: 福建工程学院, until: 2023-05}],
+     note: WP0.5证实2019—2022疑因旧校名漏抽}
+  - {name: 闽江学院, city: 福州, ownership: public, expect_B_majors: yes, confidence: high}
+  - {name: 福建江夏学院, city: 福州, ownership: public, expect_B_majors: yes, confidence: high}
+  - {name: 福建技术师范学院, city: 福州, ownership: public, expect_B_majors: yes, confidence: medium,
+     school_name_history: [{former: 福建师范大学福清分校, until: 2019}], note: 校址福清（福州代管）}
+  - {name: 福建警察学院, city: 福州, ownership: public, expect_B_majors: tbd, confidence: low,
+     note: 网络安全与执法属公安技术类，入径待裁定}
+  - {name: 福建商学院, city: 福州, ownership: public, expect_B_majors: tbd, confidence: low}
+  - {name: 阳光学院, city: 福州, ownership: private, expect_B_majors: yes, confidence: medium,
+     school_name_history: [{former: 福州大学阳光学院, until: 2015}]}
+  - {name: 福州外语外贸学院, city: 福州, ownership: private, expect_B_majors: yes, confidence: medium, note: 校址长乐}
+  - {name: 福州理工学院, city: 福州, ownership: private, expect_B_majors: yes, confidence: medium}
+  - {name: 福州工商学院, city: 福州, ownership: private, expect_B_majors: tbd, confidence: low,
+     school_name_history: [{former: 福建农林大学东方学院, until: 2020}], note: 校址永泰}
+  - {name: 福州大学至诚学院, city: 福州, ownership: independent_college, expect_B_majors: yes, confidence: medium}
+  - {name: 福建师范大学协和学院, city: 福州, ownership: independent_college, expect_B_majors: yes, confidence: medium}
+  - {name: 福建农林大学金山学院, city: 福州, ownership: independent_college, expect_B_majors: tbd, confidence: low}
+
+  # ---------- 厦门 ----------
+  - {name: 厦门大学, city: 厦门, ownership: public, expect_B_majors: yes, confidence: high,
+     campus_rules: [马来西亚分校剔除]}
+  - {name: 集美大学, city: 厦门, ownership: public, expect_B_majors: yes, confidence: high}
+  - {name: 厦门理工学院, city: 厦门, ownership: public, expect_B_majors: yes, confidence: high,
+     note: WP0.5证实六年全漏抽，2022复核有B口径165人}
+  - {name: 厦门医学院, city: 厦门, ownership: public, expect_B_majors: no, confidence: high,
+     note: 2022复核证实无B口径，真零}
+  - {name: 华侨大学, city: 厦门/泉州, ownership: public_central, expect_B_majors: yes, confidence: high,
+     campus_rules: [逐年逐专业校区核验协议, 跨校区培养按最后一年所在地],
+     note: 中央统战部直属；厦门/泉州双校区，必须拆分后分别计入}
+  - {name: 厦门华厦学院, city: 厦门, ownership: private, expect_B_majors: yes, confidence: medium}
+  - {name: 厦门工学院, city: 厦门, ownership: private, expect_B_majors: yes, confidence: medium}
+  - {name: 集美大学诚毅学院, city: 厦门, ownership: independent_college, expect_B_majors: yes, confidence: medium}
+  - {name: 厦门大学嘉庚学院, city: 漳州, ownership: independent_college, expect_B_majors: yes, confidence: high,
+     note: 名称含厦门但校址在漳州招商局开发区——城市归属按校址漳州，防名称误归}
+
+  # ---------- 泉州 ----------
+  - {name: 泉州师范学院, city: 泉州, ownership: public, expect_B_majors: yes, confidence: high,
+     note: 泉州唯一地方公办本科；WP0.5证实六年全漏抽}
+  - {name: 仰恩大学, city: 泉州, ownership: private, expect_B_majors: yes, confidence: high}
+  - {name: 泉州职业技术大学, city: 泉州, ownership: private, expect_B_majors: yes, confidence: high,
+     school_name_history: [{former: 泉州理工职业学院, until: 2018}], note: 职业本科}
+  - {name: 闽南理工学院, city: 泉州, ownership: private, expect_B_majors: yes, confidence: medium, note: 校址石狮}
+  - {name: 泉州信息工程学院, city: 泉州, ownership: private, expect_B_majors: yes, confidence: medium}
+  - {name: 闽南科技学院, city: 泉州, ownership: private, expect_B_majors: yes, confidence: medium,
+     school_name_history: [{former: 福建师范大学闽南科技学院, until: 2018}], note: 校址南安}
+
+  # ---------- 漳州 ----------
+  - {name: 闽南师范大学, city: 漳州, ownership: public, expect_B_majors: yes, confidence: high,
+     note: WP0.5发现2019=4125/2020=19两个极端值均疑似抽取失败，曾污染标准化锚点}
+
+  # ---------- 莆田 / 三明 / 南平 / 龙岩 / 宁德 ----------
+  - {name: 莆田学院, city: 莆田, ownership: public, expect_B_majors: yes, confidence: medium}
+  - {name: 三明学院, city: 三明, ownership: public, expect_B_majors: yes, confidence: medium}
+  - {name: 武夷学院, city: 南平, ownership: public, expect_B_majors: yes, confidence: medium}
+  - {name: 龙岩学院, city: 龙岩, ownership: public, expect_B_majors: yes, confidence: medium}
+  - {name: 宁德师范学院, city: 宁德, ownership: public, expect_B_majors: yes, confidence: medium}

@@ -1,0 +1,43 @@
+# I_firm 企业存量口径配置（C/B/X 三套，严格嵌套）
+# 状态：v1.0 草案。行业代码依据 GB/T 4754-2017《国民经济行业分类》
+# 关键词层引用 config/i_system_upgrade_keywords.yml（不重复维护）
+# 主口径角色：I_firm 为 I_index 双模块主口径之一（框架 v1.1 决定）
+
+meta:
+  version: "1.0-draft"
+  frozen: false
+  industry_code_source: "GB/T 4754-2017"
+  keyword_source: "config/i_system_upgrade_keywords.yml"
+
+C_conservative:
+  label: "保守口径：AI 核心企业"
+  definition: "行业大类属 64/65 且 名称或经营范围命中 strong_ai_keywords"
+  industry_codes: ["64", "65"]   # 64 互联网和相关服务；65 软件和信息技术服务业
+  keyword_tiers_required: [strong_ai_keywords]
+  logic: industry_AND_keyword
+
+B_basic:
+  label: "基本口径：数字技术企业（主口径）"
+  definition: "行业大类 64/65 全部存续企业；与 C 自动嵌套"
+  industry_codes: ["64", "65"]
+  keyword_tiers_required: []
+  logic: industry_only
+  includes: C_conservative
+
+X_expanded:
+  label: "扩大口径：B + 制造业数字化交叉企业"
+  definition: "B ∪（行业门类 C 制造业 且 经营范围命中 strong_ai 或 industrial_digital 关键词）"
+  includes: B_basic
+  additional:
+    industry_codes_prefix: ["C"]   # 制造业门类（13—43大类）
+    keyword_tiers_required: [strong_ai_keywords, industrial_digital_keywords]
+    logic: industry_AND_keyword
+
+structural_rules:
+  stock_reconstruction: "存量_t = 注册日期 ≤ t年末 且（无注销/吊销日期 或 注销/吊销日期 > t年末）；用成立与注销日期逐年重构历史存量，禁止用当前存量倒填"
+  entity_scope: "仅法人企业；剔除个体工商户、分支机构（机构类型字段）"
+  registered_capital: {main: 不设下限, robustness: ≥100万元}
+  city_attribution: "按注册地址所属地级市；迁址企业按各年末注册地"
+  dedupe_key: 统一社会信用代码
+  per_capita: "进入指数前除以城市常住人口（框架 v1.1）"
+  weak_keywords_usage: "weak_keywords 仅用于召回复核候选，禁止作为计数依据"

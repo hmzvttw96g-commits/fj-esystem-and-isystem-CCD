@@ -1,0 +1,73 @@
+# E端专业口径配置（C/B/X 三套，严格嵌套：C ⊂ B ⊂ X）
+# 状态：v1.0 草案，冻结前须人工对照教育部《普通高等学校本科专业目录》最新版核验专业代码
+# 设计原则：
+#   1. C/B/X 只定义"专业范围"维度；办学性质、计划类型、校区归属是独立维度（见 freeze 文档），禁止混杂
+#   2. 专业代码优先匹配，专业名称兜底（计划册可能只印名称）
+#   3. 大类招生按 broad_category_mapping 处理，禁止拆分估算
+# 嵌套校验：scripts/caliber_nesting_check.py 自动验证
+
+meta:
+  version: "1.0-draft"
+  frozen: false
+  code_source: "教育部《普通高等学校本科专业目录》，T=特设专业，K=国家控制布点专业"
+  note: "code_verified=false 的条目冻结前必须人工核验代码"
+
+C_conservative:
+  label: "保守口径：AI 直接命名专业"
+  rationale: >
+    仅含以 AI 为直接培养目标的专业。不取"仅人工智能一个专业"方案：
+    人工智能专业 2019 年才首批备案，单专业 C 口径在 2015—2018 年结构性为零，
+    会触发 CCD 零值退化（WP0.5 已确认零值的破坏性）。三专业方案保守性不损失。
+  majors:
+    - {name: 人工智能, code: 080717T, code_verified: true}
+    - {name: 智能科学与技术, code: 080907T, code_verified: true}
+    - {name: 数据科学与大数据技术, code: 080910T, code_verified: true}
+
+B_basic:
+  label: "基本口径：AI 基础专业群（主口径，与既有 pilot 实践一致）"
+  includes: C_conservative
+  additional_majors:
+    - {name: 计算机科学与技术, code: 080901, code_verified: true}
+    - {name: 软件工程, code: 080902, code_verified: true}
+    - {name: 网络工程, code: 080903, code_verified: true}
+    - {name: 信息安全, code: 080904K, code_verified: true}
+    - {name: 物联网工程, code: 080905, code_verified: true}
+    - {name: 网络空间安全, code: 080911TK, code_verified: true}
+
+X_expanded:
+  label: "扩大口径：广义智能技术专业群（B + 电子信息/自动化/智能制造交叉）"
+  includes: B_basic
+  additional_majors:
+    - {name: 电子信息工程, code: 080701, code_verified: true}
+    - {name: 电子科学与技术, code: 080702, code_verified: true}
+    - {name: 通信工程, code: 080703, code_verified: true}
+    - {name: 自动化, code: 080801, code_verified: true}
+    - {name: 机器人工程, code: 080803T, code_verified: true}
+    - {name: 智能制造工程, code: 080213T, code_verified: true}
+    - {name: 智能感知工程, code: 080718T, code_verified: false}
+    - {name: 智能装备与系统, code: 080214T, code_verified: false}
+    - {name: 工业智能, code: 080215T, code_verified: false}
+    - {name: 区块链工程, code: 080917T, code_verified: false}
+    - {name: 大数据管理与应用, code: 120108T, code_verified: false, note: 管理学门类，跨学科}
+
+pending_ruling:
+  - {name: 数字媒体技术, code: 080906, issue: "内容创意属性强，是否入X待人工裁定，暂不入任何口径"}
+  - {name: 网络安全与执法, code: 083108TK, issue: "公安技术类（福建警察学院），是否入B/X待裁定"}
+  - {name: 医学信息工程, code: 080706T, issue: "医科院校（福建医科大学），是否入X待裁定"}
+
+broad_category_mapping:
+  # 大类招生计划无法拆分到专业，按本表整体归口径；表外大类一律 manual_review
+  - {broad_category: 计算机类, caliber: B, rationale: 所辖专业全部属于B口径}
+  - {broad_category: 电子信息类, caliber: X, rationale: 所辖专业属X口径（电子信息工程/通信工程等）}
+  - {broad_category: 自动化类, caliber: X, rationale: 自动化/机器人工程属X口径}
+
+orthogonal_dimensions:
+  # 与专业口径独立的三个维度，主口径取值如下，其余做稳健性（详见冻结文档）
+  ownership: {main: 公办本科（含中央部属）, robustness: 含民办本科与独立学院（E_incl_private）}
+  batch:
+    include: [本科批, 本科一批, 本科二批, 本科提前批, 高校农村专项, 地方农村专项]
+    exclude: [高职专科批, 征求志愿（防重复计数）]
+    note: 职业本科高校（如泉州职业技术大学）的本科批计划属本科，按 ownership 维度归民办
+  campus:
+    rule: 按培养所在校区归城市；跨校区培养按最后一年所在地；境外校区剔除
+    protocols: [华侨大学逐年逐专业核验协议, 厦门大学马来西亚分校剔除, 福州大学晋江校区逐年核验（待办）]
