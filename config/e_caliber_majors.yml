@@ -62,8 +62,15 @@ broad_category_mapping:
   - {broad_category: 自动化类, caliber: X, rationale: 自动化/机器人工程属X口径}
 
 orthogonal_dimensions:
-  # 与专业口径独立的三个维度，主口径取值如下，其余做稳健性（详见冻结文档）
-  ownership: {main: 公办本科（含中央部属）, robustness: 含民办本科与独立学院（E_incl_private）}
+  # 与专业口径独立的维度（详见冻结文档第二节）
+  population:
+    rule: "全部本科层次高校（公办、民办、独立学院、职业本科）；高职专科剔除"
+    decided: 2026-06-12
+    note: >
+      总体定义而非口径，不设公办/民办对比序列，C/B/X 保持唯一口径维度。
+      办学性质异质性三层处理：民办份额×口径梯度表（经验证据）、
+      学科评估质量权重稳健性、研究生层次测量边界声明。
+      ownership 字段保留用于梯度表统计与描述性分析，不再作为筛选条件。
   batch:
     include: [本科批, 本科一批, 本科二批, 本科提前批, 高校农村专项, 地方农村专项]
     exclude: [高职专科批, 征求志愿（防重复计数）]
