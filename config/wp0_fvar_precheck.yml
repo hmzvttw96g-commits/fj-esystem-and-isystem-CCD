@@ -1,0 +1,87 @@
+# WP0 F端变异度预检配置
+# 用途：在大规模采集前，用统计年鉴现成 F 变量判定样本边界=福建9市 or 扩展闽浙粤
+# 决策逻辑（框架风险预案）：省内变异不足以识别（组间 F 检验不显著 / ICC 过高 /
+#   组内时序变异过小）或聚类数过少 → 触发扩样。脚本只给"建议"，最终由研究者拍板。
+
+meta:
+  version: "1.0"
+  decision_owner: researcher   # 脚本出建议，研究者签字
+  note: "本预检仅服务论文B识别功率与少聚类推断；论文A不依赖此结果"
+
+# 候选样本（城市清单冻结于此，避免事后增删城市挑结果）
+samples:
+  fujian_9:
+    label: "福建省9设区市"
+    cities: [福州, 厦门, 泉州, 漳州, 莆田, 三明, 南平, 龙岩, 宁德]
+  minzheyue_extended:
+    label: "闽浙粤东南沿海地级市（扩样预案）"
+    cities:
+      # 福建9
+      - 福州
+      - 厦门
+      - 泉州
+      - 漳州
+      - 莆田
+      - 三明
+      - 南平
+      - 龙岩
+      - 宁德
+      # 浙江11
+      - 杭州
+      - 宁波
+      - 温州
+      - 嘉兴
+      - 湖州
+      - 绍兴
+      - 金华
+      - 衢州
+      - 舟山
+      - 台州
+      - 丽水
+      # 广东21
+      - 广州
+      - 深圳
+      - 珠海
+      - 汕头
+      - 佛山
+      - 韶关
+      - 湛江
+      - 肇庆
+      - 江门
+      - 茂名
+      - 惠州
+      - 梅州
+      - 汕尾
+      - 河源
+      - 阳江
+      - 清远
+      - 东莞
+      - 中山
+      - 潮州
+      - 揭阳
+      - 云浮
+
+# 待检验 F 变量（列名须与输入面板 CSV 表头一致）
+f_variables:
+  - {col: findev_loan_deposit_gdp, label: "存贷款余额/GDP", role: H1润滑, key: true}
+  - {col: findev_digital_finance_index, label: "数字普惠金融指数", role: H1润滑, key: true}
+  - {col: siphon_fin_wage_premium, label: "金融业相对工资溢价", role: H2虹吸主代理, key: true}
+  - {col: siphon_fin_emp_share, label: "金融业城镇单位就业占比", role: H2虹吸主代理, key: true}
+  - {col: fin_value_added_gdp_share, label: "金融业增加值占GDP", role: H3分组, key: false}
+
+# 判定阈值（透明、可调；脚本逐项报告 + 综合建议）
+thresholds:
+  min_clusters_comfortable: 30   # ≥此值少聚类推断无忧
+  min_clusters_acceptable: 20    # <此值少聚类问题显著，wild bootstrap Webb 也吃力
+  between_city_f_alpha: 0.05     # 组间单因素ANOVA显著性水平
+  icc_high: 0.85                 # ICC>此值=F近乎组内时不变，两向FE后弱识别
+  min_within_cv: 0.05            # 组内时序变异系数下限
+
+# 综合建议规则（脚本据此输出 EXPAND / FUJIAN_OK / RESEARCHER_CALL）
+verdict_rule:
+  expand_if_clusters_below: 20
+  expand_if_key_vars_unhealthy_ratio_above: 0.5   # 过半"关键"F变量变异不健康→扩样
+  note: >
+    城市数<20 直接建议扩样（少聚类推断为主因，对应框架"聚类升至30+"）；
+    或过半 key=true 变量同时满足(组间F不显著 或 ICC过高 或 组内CV过低)→扩样。
+    两条均不触发→福建9市可行，但若 clusters<30 仍提示报告少聚类稳健性。
