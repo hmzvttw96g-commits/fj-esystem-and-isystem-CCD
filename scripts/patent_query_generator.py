@@ -75,8 +75,11 @@ def main():
 
     if args.self_test:
         print("== 检索式生成器自检 ==")
-        okC = set(sets["C"]) <= set(sets["B"])
-        okB = set(sets["B"]) <= set(sets["X"])
+        # 语义嵌套：每个小口径前缀须被大口径某前缀覆盖（==或被更短前缀包含），
+        # 而非字面子集——因 B 把 C 的 G06F18/G06F40 吸收为 G06F。
+        covered = lambda small, big: all(any(s == b or s.startswith(b) for b in big) for s in small)
+        okC = covered(sets["C"], sets["B"])
+        okB = covered(sets["B"], sets["X"])
         absorbed = "G06F18" not in sets["B"] and "G06F40" not in sets["B"] and "G06F" in sets["B"]
         legacy = all(LEGACY in s for s in sets.values())
         print(f"  C⊆B: {okC}  B⊆X: {okB}  B吸收G06F18/40: {absorbed}  各口径含G06K9: {legacy}")
