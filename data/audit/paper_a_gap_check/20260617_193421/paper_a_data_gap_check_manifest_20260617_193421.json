@@ -1,0 +1,28 @@
+{
+  "run_id": "20260617_193421",
+  "created_at": "2026-06-17T19:34:21",
+  "task": "paper_a_data_gap_check",
+  "repo_root": "/Users/greenbarry/Documents/GitHub/fj-esystem-and-isystem-CCD",
+  "report_path": "/Users/greenbarry/Documents/GitHub/fj-esystem-and-isystem-CCD/data/audit/paper_a_gap_check/20260617_193421/paper_a_data_gap_check_report_20260617_193421.md",
+  "latest_report_path": "/Users/greenbarry/Documents/GitHub/fj-esystem-and-isystem-CCD/manuscripts/论文A数据缺口检查报告.md",
+  "manuscript_files_read": [
+    "manuscripts/README.md",
+    "manuscripts/论文A_测量与诊断_完整稿.md"
+  ],
+  "formal_paper_a_ready": false,
+  "formal_numeric_results_usable": false,
+  "main_blockers": [
+    "福建9市2019-2024四环节功能链面板缺失",
+    "旧E端面板已被WP0.5审计判为不可正式使用",
+    "functional_chain_ccd_pipeline.py真实运行部分尚未实现",
+    "缺少C/B/X、人均化/未人均化、朴素/边界清洗后正式输出",
+    "口径冻结文档仍为草案且E端时滞主口径表述需统一"
+  ],
+  "legacy_modified": false,
+  "paper_body_modified": false,
+  "output_files": [
+    "/Users/greenbarry/Documents/GitHub/fj-esystem-and-isystem-CCD/data/audit/paper_a_gap_check/20260617_193421/paper_a_data_gap_check_report_20260617_193421.md",
+    "/Users/greenbarry/Documents/GitHub/fj-esystem-and-isystem-CCD/manuscripts/论文A数据缺口检查报告.md",
+    "/Users/greenbarry/Documents/GitHub/fj-esystem-and-isystem-CCD/data/audit/paper_a_gap_check/20260617_193421/paper_a_data_gap_check_manifest_20260617_193421.json"
+  ]
+}
