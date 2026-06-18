@@ -1,0 +1,58 @@
+# 供给质量口径配置（功能链②能力供给环节）
+# 状态：v1.0 草案。复合 = 一流本科专业建设点（主）+ 硕博学位授权点（增量）。
+# 可得性测试结论（docs/四环节功能链_数据可得性测试_v1.md）：
+#   一流专业 高·公开·广覆盖（为9市提供跨城市变异）；学位点 中·稀疏（福厦强、5市近零）。
+#   故复合是必需，一流专业为主成分。该环节近乎时间不变（贡献横截面、不贡献趋势）。
+# ⚠ 项目点计数类，**不按人口人均化**；按院校数或容量标准化。
+
+meta:
+  version: "1.0-draft"
+  frozen: false
+  link: 供给质量
+  composite_weights: {first_class_major: 0.6, degree_point: 0.4}   # 一流专业为主，待敏感性确认
+  normalization: capacity_or_per_institution    # 非 per_capita
+
+# ========== 成分一：一流本科专业建设点 ==========
+first_class_major:
+  label: "国家级/省级一流本科专业建设点（限 AI 专业群）"
+  source: 教育部公开名单（2019—2021 三批）；福建省教育厅公示
+  major_scope: 引用 e_caliber_majors.yml 的 C/B/X（仅统计落在口径内的专业点）
+  tier_weights: {国家级: 1.0, 省级: 0.5}     # 待敏感性确认
+  panel_columns: [city, year, school, major_standard, caliber, tier]   # 待人工采集填表
+  availability: 高·公开（福建约670个一流专业，计算机类入选最多约22院校）
+  collection: 公开名单按 AI 专业筛选 + 院校归市（跨校区按培养地，沿用E端校区规则）
+
+# ========== 成分二：硕博学位授权点 ==========
+# 学科名与本科专业名不同，须单独映射；学科代码标 code_verified，冻结前人工核验
+degree_point:
+  label: "AI 相关学科硕士/博士学位授权点"
+  source: 国务院学位委员会学位授权审核结果 + 各校研究生院
+  level_weights: {博士点: 1.0, 硕士点: 0.6, 专业学位点: 0.5}   # 待敏感性确认
+  panel_columns: [city, year, school, discipline, discipline_code, caliber, level]   # 待人工采集填表
+  availability: 中·稀疏（福州/厦门强；泉州/漳州中；莆田2021起;三明/龙岩/南平/宁德近零）
+  temporal_note: 按审核周期（2017/2020/2023）跳变，年度内不变
+  # 学科 → C/B/X 映射（学位点专用，区别于本科专业口径）
+  discipline_caliber_map:
+    C_conservative:
+      - {discipline: 人工智能, code: "1405（交叉学科）", code_verified: false}
+      - {discipline: 智能科学与技术, code: 待核验, code_verified: false}
+    B_basic:
+      includes: C_conservative
+      additional:
+        - {discipline: 计算机科学与技术, code: "0812", code_verified: false}
+        - {discipline: 软件工程, code: "0835", code_verified: false}
+        - {discipline: 网络空间安全, code: "0839", code_verified: false}
+        - {discipline: 电子信息（专业学位）, code: "0854", code_verified: false, note: 含计算机技术/软件工程/人工智能方向，莆田学院即此类}
+    X_expanded:
+      includes: B_basic
+      additional:
+        - {discipline: 电子科学与技术, code: "0809", code_verified: false}
+        - {discipline: 信息与通信工程, code: "0810", code_verified: false}
+        - {discipline: 控制科学与工程, code: "0811", code_verified: false}
+
+# ========== 待人工裁定/采集（manual_pending） ==========
+manual_pending:
+  - 一流专业名单按 AI 专业筛选并归市，填 first_class_major.panel（公开数据，可采集）
+  - 学位点按学科归 C/B/X 并归市，填 degree_point.panel（公开数据，可采集）
+  - 全部 discipline_code 对照《学位授予和人才培养学科目录》核验，code_verified 转 true
+  - composite_weights / tier_weights / level_weights 在 pilot 后做敏感性，再冻结

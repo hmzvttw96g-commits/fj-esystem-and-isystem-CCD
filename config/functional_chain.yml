@@ -1,0 +1,89 @@
+# 四环节功能链主配置（E-I 耦合的可分解诊断结构）
+# 状态：v1.0 草案。本文件是功能链的唯一权威定义，管道按此读取环节→指标→数据源→构造。
+# 设计依据：docs/四环节功能链_数据可得性测试_v1.md（可得性已实测通过）、
+#   docs/CCD动态与识别方法地图_v1.md、口径冻结文档。
+# 三维结构：系统(E/I) × 环节(各2) × 口径(C/B/X)。环节权重事前冻结为等权。
+
+meta:
+  version: "1.0-draft"
+  frozen: false
+  semantic: "共同发育耦合——CCD 测两系统发育水平协调，非毕业生流量匹配"
+  note: "F 端与技术暴露变量绝不进入 CCD 构造（机械内生防火墙）"
+
+# ---------- E 系统（教育供给侧） ----------
+E_system:
+  index: E_index
+  combine: equal_weight          # E_index = 等权(供给规模, 供给质量)
+  links:
+    - id: 供给规模
+      role: 基础供给（量）
+      indicator: AI专业群本科招生计划数
+      caliber_config: e_caliber_majors.yml      # C/B/X 专业口径
+      panel: data/panel/functional_chain/e_supply_scale_panel.csv   # 待生成
+      normalization: per_capita                  # 除以城市常住人口后标准化
+      temporal: 年度变化大（流量；当期口径，发育错配即信号）
+      availability: 高·已在手（全省招生计划册，pilot抽3市，WP2全抽）
+    - id: 供给质量
+      role: 能力供给（质/层次）
+      indicator: 一流本科专业建设点 + 硕博学位授权点（复合）
+      caliber_config: e_caliber_quality.yml
+      panel: data/panel/functional_chain/e_supply_quality_panel.csv  # 待填
+      normalization: capacity     # 项目点计数，按院校数/容量，**不按人口人均化**
+      temporal: 近乎时间不变（一流专业2021后定型、学位点按审核周期）——贡献横截面水平、几乎不贡献趋势
+      availability: 一流专业高·公开；学位点中·稀疏（福厦强、5市近零，故复合）
+
+# ---------- I 系统（产业需求侧） ----------
+I_system:
+  index: I_index
+  combine: equal_weight          # I_index = 等权(产业承接, 产业转化)
+  links:
+    - id: 产业承接
+      role: 载体/消化能力
+      indicator: AI/数字技术企业存量
+      caliber_config: i_caliber_firm.yml
+      panel: data/panel/functional_chain/i_carrier_panel.csv         # 待生成
+      normalization: per_capita
+      temporal: 好（逐年存量重构）
+      availability: 中-高·可访问（CSMAR/CNRDS，**待登录证工商四字段**）
+      robustness_supplement: I_job 岗位（2021—2024 子样本，不进主口径，避免口径断点）
+    - id: 产业转化
+      role: 创新产出
+      indicator: 企业 AI/数字技术专利申请量
+      caliber_config: i_caliber_patent.yml
+      panel: data/panel/functional_chain/i_conversion_panel.csv      # 待生成
+      normalization: per_capita
+      temporal: 好（按申请日计年）
+      availability: 高·可访问（incoPat/智慧芽，待导出）
+
+# ---------- 传导桥（不进 CCD） ----------
+transmission_bridge:
+  id: 传导
+  between: [供给质量, 产业承接]
+  meaning: 人才留存↔流失
+  in_ccd: false
+  note: 共同发育的耦合缺口，论文A仅命名、不测量；论文B以 F 端（虹吸@能力层、润滑@创新层）解释
+
+# ---------- 测度与诊断 ----------
+measurement:
+  ccd: "标准耦合协调度 D=√(C·T)；C∈[0,1] 有界，主报告分数logit，线性FE对照"
+  obstacle_degree:
+    engine: 障碍度模型（因子贡献度 × 指标偏离度，归一化）
+    decompose_over: [供给规模, 供给质量, 产业承接, 产业转化]   # 4环节
+    note: 唯一诊断引擎；下列读数全部由它导出，不另设独立分类法
+  readouts:
+    city_type:    # 横截面
+      basis: 障碍度两侧份额(E vs I) × D水平
+      classes: [教育领先·产业滞后, 产业领先·教育滞后, 双高协调, 双低失调]
+    path_type:    # 时序
+      basis: D 的多年轨迹（斜率+波动）
+      classes: [稳定提升型, 跃迁协调型, 低位波动型]
+    bottleneck_migration:    # 动态独门
+      basis: 各城市障碍度主环节随时间的迁移
+      note: 功能链×趋势，静态CCD给不了；动态信号主来自①③④（②近静态）
+
+# ---------- 标准化与零值（全口径共用） ----------
+standardization:
+  scheme: 全样本固定基准 min-max（主）；秩标准化（稳健）；熵权仅披露性稳健
+  anchor_rule: min/max 所在单元须经数值审计、人工签字（WP0.5教训）
+  zero_value: 任一指数为0的城市-年份标记"不可计算"，不参与等级与路径分类
+  per_capita_base: 常住人口（与E/I人均化一致）
