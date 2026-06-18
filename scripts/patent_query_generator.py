@@ -58,12 +58,13 @@ def _absorb(codes):
 
 
 def build_query(codes):
-    # 地址用"原始申请人地址 OR 工商注册地址"含福建（省级求全）；
-    # 城市归属与第一申请人判定留到清洗（详见 docs/产业转化_专利检索式_v1.md）。
-    # 不用"现在申请人地址"（漏已转让）、不用"发明人地址"（住址≠企业）。
+    # 地址求全：原始申请人地址 OR 工商注册地址 OR 第一发明人地址 含福建。
+    # 申请人维度→产业转化主口径（城市归属：工商优先、原始申请人兜底）；
+    # 发明人维度→创新外流诊断（描述性，不进CCD）。判定/归属留到清洗。
+    # 不用"现在申请人地址"（漏已转让）。详见 docs/产业转化_专利检索式_v1.md。
     ipc = " OR ".join(f"{c}*" for c in codes)
     return (f"IPC=({ipc})\n"
-            f"AND (原始申请人地址=({PROVINCE}) OR 工商注册地址=({PROVINCE}))\n"
+            f"AND (原始申请人地址=({PROVINCE}) OR 工商注册地址=({PROVINCE}) OR 第一发明人地址=({PROVINCE}))\n"
             f"AND 申请日=[{YEAR_START}0101 TO {YEAR_END}1231]\n"
             f"AND 专利类型=({PATENT_TYPES})")
 

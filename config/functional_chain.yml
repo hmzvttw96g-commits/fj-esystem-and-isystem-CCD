@@ -55,6 +55,23 @@ I_system:
       temporal: 好（按申请日计年）
       availability: 高·可访问（incoPat/智慧芽，待导出）
 
+# ---------- 描述性诊断指标（不进 CCD，从专利导出免费构造） ----------
+descriptive_diagnostics:
+  innovation_outflow:
+    id: 创新外流率
+    formula: "(第一发明人在该市 ∧ 申请人非福建) / (第一发明人在该市的全部专利)"
+    meaning: 在本市发明、却被外省企业拥有的比例——人才产出了、价值外溢
+    in_ccd: false
+    source: 与 i_conversion_panel 同一次专利导出（发明人地址 vs 申请人地址错配），零额外采集
+    note: >
+      与论文B的人才就业虹吸/流失不同——此为"人留住、价值没留住"的产权外溢；
+      专利仅观测产权(申请人)，不观测实际商用地，"外流"指被外省企业拥有；
+      多发明人主判用第一发明人、分数计数做稳健性；呼应传导层"价值传导漏"。
+  local_closure:
+    id: 本地闭环率
+    formula: "(第一发明人在该市 ∧ 申请人也在该市) / (第一发明人在该市全部)"
+    in_ccd: false
+
 # ---------- 传导桥（不进 CCD） ----------
 transmission_bridge:
   id: 传导
