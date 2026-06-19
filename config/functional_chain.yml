@@ -39,13 +39,19 @@ I_system:
   links:
     - id: 产业承接
       role: 载体/消化能力
-      indicator: AI/数字技术企业存量
-      caliber_config: i_caliber_firm.yml
-      panel: data/panel/functional_chain/i_carrier_panel.csv         # 待生成
+      indicator: 信息传输、软件和信息技术服务业 城镇单位从业人员数（中国城市统计年鉴，门类I）
+      caliber_invariant: true   # 年鉴行业层，无 C/B/X 细分；同值填入 C/B/X 三行（B主口径用之，C/X此环并列同值）
+      panel: data/panel/functional_chain/i_carrier_panel.csv
       normalization: per_capita
-      temporal: 好（逐年存量重构）
-      availability: 中-高·可访问（CSMAR/CNRDS，**待登录证工商四字段**）
-      robustness_supplement: I_job 岗位（2021—2024 子样本，不进主口径，避免口径断点）
+      temporal: 好（年度）
+      availability: 高·免费（中国城市统计年鉴，EPS 可导；全口径覆盖）
+      decision_note: >
+        2026-06 改：CnOpenData 全量工商企业数据为付费产品（校内/订阅均仅试用样本，不可得全量），
+        故"企业存量"主口径不可获取。改用年鉴数字产业规模代理——①全覆盖（所有规模企业）②免费、现有access
+        ③"产业雇了多少数字人"比企业数更贴 E-I 吸纳概念。代价：无 C/B/X 细分（行业层）。
+      robustness_supplement: >
+        企业存量（CnOpenData 全生命周期"在业企业数量"，scripts/cnopendata_carrier_filter.py，
+        待将来购买/校内拿到全量再作稳健性）；I_job 岗位（2021—2024 子样本）
     - id: 产业转化
       role: 创新产出
       indicator: 企业 AI/数字技术专利申请量

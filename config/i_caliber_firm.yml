@@ -4,8 +4,14 @@
 # 主口径角色：I_firm 为 I_index 双模块主口径之一（框架 v1.1 决定）
 
 meta:
-  version: "1.0-draft"
+  version: "1.1-draft"
   frozen: false
+  functional_chain_link: 产业承接（稳健性）
+  status: >
+    DEMOTED 2026-06：产业承接主口径已改为年鉴"信息传输软件业从业人员数"代理（见 functional_chain.yml）。
+    原因：全量工商企业数据（CnOpenData）为付费产品，校内/订阅均仅试用样本、不可得全量。
+    本"企业存量 C/B/X"口径保留为**稳健性**——将来购买/校内拿到全量，用
+    scripts/cnopendata_carrier_filter.py 跑企业数版产业承接与年鉴代理并列对照。
   industry_code_source: "GB/T 4754-2017"
   keyword_source: "config/i_system_upgrade_keywords.yml"
 
