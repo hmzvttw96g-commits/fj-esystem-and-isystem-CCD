@@ -10,7 +10,9 @@ meta:
   frozen: false
   link: 供给质量
   composite_weights: {first_class_major: 0.6, degree_point: 0.4}   # 一流专业为主，待敏感性确认
-  normalization: capacity_or_per_institution    # 非 per_capita
+  normalization: minmax_per_component_then_composite   # 非 per_capita。v1 实现：两成分各自
+  # min-max(按口径跨城市-年)→0.6/0.4 复合→[0,1]（量纲解耦，权重才有意义）。备选
+  # per_institution(质量密度)待 pilot 敏感性。详见 docs/供给质量_指标设计_v1.md §6（含循环性警示）。
 
 # ========== 成分一：一流本科专业建设点 ==========
 first_class_major:
