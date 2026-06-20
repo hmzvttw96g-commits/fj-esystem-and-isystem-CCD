@@ -72,7 +72,9 @@ SPLIT_X = 305          # 左右栏分界
 RIGHT_OFFSET = 243     # 右栏减此偏移后与左栏共用列带
 C2_CODE = (74, 93)     # 专业代号（数据行）
 C2_MAJOR = (92, 238)   # 专业名称（名称行）/ 校名
-C2_PLAN = (236, 252)   # 计划人数（数据行）
+C2_PLAN_X1 = (242, 256)  # 计划人数：按**右边缘 x1**匹配（计划数右对齐，2/3 位数起点不同
+                         # 但右缘一致 ~247）。曾用左界 x0 带，3 位数(@232)漏抓或杂数误并 →
+                         # 改右缘匹配，兼容 2/3 位数且不纳入左侧杂数。
 C2_XUEZHI = (250, 264) # 学制（名称行）
 
 
@@ -218,13 +220,15 @@ def parse_half(half_words, year, page_no, school_ctx, batch):
         major = re.split(r"(大学|学院|分校)", chinese_major)[0].strip()
         if major and not cand and major not in OWNER and "专业组" not in major and len(major) >= 2 \
                 and not re.search(r"(大学|学院|学校|招生|网址|学费|收费|学年|说明)", major):
-            # 找下方数据行的计划数（C2_PLAN 带）
+            # 找下方数据行的计划数：右对齐，取右边缘 x1 落在 C2_PLAN_X1 的纯数字 token
             plan = code = None
             for tt in sorted(rows):
                 if t < tt <= t + PAIR_TOL:
-                    pl = "".join(w["text"] for w in rows[tt] if in_col(w["x0"], C2_PLAN))
-                    if re.fullmatch(r"\d{1,4}", pl):
-                        plan = pl
+                    cand = [w["text"] for w in rows[tt]
+                            if re.fullmatch(r"\d{1,4}", w["text"])
+                            and C2_PLAN_X1[0] <= w.get("x1", w["x0"]) < C2_PLAN_X1[1]]
+                    if cand:
+                        plan = cand[0]
                         code = "".join(w["text"] for w in rows[tt] if in_col(w["x0"], C2_CODE))
                         break
             if plan and school_ctx.get("school"):
