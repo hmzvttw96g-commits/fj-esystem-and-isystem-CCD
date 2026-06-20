@@ -22,3 +22,7 @@ outputs/ccd_outputs/
 *.tmp
 temp/
 node_modules/
+
+# E端供给规模可再生中间件(8MB候选行)与未匹配明细dump
+data/interim/e_supply_scale/
+data/audit/**/manual_review_*.csv

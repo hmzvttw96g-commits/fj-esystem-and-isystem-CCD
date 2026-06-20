@@ -10,8 +10,8 @@
 输出候选行 CSV（year,school,major,plan,batch,page），喂 e_supply_scale_pipeline.py。
 本脚本只抽"候选行"（全专业），AI 口径筛选与归一交给后者。
 
-⚠ 适配"普通类物理科目组"版式（2020/2022/2023 等）。其它版式（高职分类、文史、2019 doc）
-  列边界可能不同，需另调 COLS 或单独适配。
+⚠ 适配"普通类物理科目组"版式（2020 两栏 / 2021 单栏左移 / 2022–2025 单栏标准；自动判别）。
+  其它版式（高职分类、文史、2019 doc）列边界可能不同，需另调 COLS 或单独适配。
 
 已修（v2，2026-06）：
   ✓ 境外校区剔除：窗口扫描"林吉特/马来西亚/办学地点在马来西亚"整段剔除（厦大马来西亚分校已干净）；
@@ -19,9 +19,15 @@
   ✓ 莆田软件306 等大值经原 PDF 核验为真实计划（配对正确），非误配总计。
   ✓ 下游 e_supply_scale_pipeline 去重键含专业代号+计划+页 → 多专业组同专业**求和**。
 
-v3（2026-06）：新增 2020/2021 两栏格式分支（detect_two_col → parse_page_2col）：
+v3（2026-06）：新增 2020 两栏+字体替换分支（detect_two_col → parse_page_2col）：
   字符映射(渊（冤）袁，窑·尧、)、x305 分栏+右栏-243、剔左侧竖排标签、2020 列带、校名两行结构。
   2020 实测：福建校、量级合理（集美785/福师大297/厦大185）。
+
+v4（2026-06-20）：三版式族厘清。原以为 2020/2021 同族（两栏），实测 **2021（物理组.pdf）
+  是单栏、无 渊/冤 乱码，但列坐标整体左移**（专业代号@~97、专业名称@~124）。用标准列带解析
+  会全盘错位、福建校近乎零命中。故单栏拆两套列带（COLS_STD / COLS_2021），detect_single_cols
+  按数据行专业代号 x 中位（<100→2021）判别。2021 实测福建校量级合理（莆田学院/集美/福大）。
+  另修：owner 误判 bug（"公办" in row_txt 测的是 dict 键恒 False → owner 恒"民办"）改用 line_txt。
 
 ⚠ 仍待（输出仍须人工抽查后方可冻结）：
   1. 2020/2021 精度待核：①"独立学院"等类别标题被当校名（下游参照名单过滤会丢，不污染面板）
@@ -44,13 +50,14 @@ try:
 except ImportError:
     raise SystemExit("需要 pdfplumber：pip3 install --user pdfplumber")
 
-# 列 x 边界（普通类物理科目组实测）
-COL_SCHOOL = (0, 100)      # 院校代号/校名
-COL_MAJORCODE = (100, 130) # 专业代号
-COL_MAJOR = (130, 280)     # 专业名称
-COL_XUEZHI = (280, 300)    # 学制
-COL_PLAN = (300, 330)      # 计划人数
-COL_FEE = (330, 362)       # 收费
+# 列 x 边界（单栏·普通类物理科目组）。两个子版式：
+#   COLS_STD  ：2022–2025 标准带（实测）。
+#   COLS_2021 ：2021（物理组.pdf）单栏但整体左移——专业代号@~97、专业名称@~124、计划@~326、
+#               收费@~345（实测）。无字体乱码（区别于 2020 两栏族）。
+COLS_STD = {"school": (0, 100), "code": (100, 130), "major": (130, 280),
+            "xz": (280, 300), "plan": (300, 330), "fee": (330, 362)}
+COLS_2021 = {"school": (0, 90), "code": (90, 112), "major": (112, 290),
+             "xz": (290, 312), "plan": (312, 338), "fee": (338, 366)}
 WM_SIZE = 30               # 字号≥此为水印
 BATCHES = ["本科提前批", "本科批", "本科一批", "本科二批", "高校农村专项",
            "地方农村专项", "高职专科批", "高职(专科)批", "高职（专科）批"]
@@ -84,20 +91,20 @@ def col_text(line, col):
     return "".join(w["text"] for w in line if in_col(w["x0"], col)).strip()
 
 
-def find_plan_row(rows, name_top):
+def find_plan_row(rows, name_top, cols):
     """名称行下方 PAIR_TOL 内、含计划人数列数字的最近行。"""
     best = None
     for t, line in rows.items():
         if name_top < t <= name_top + PAIR_TOL:
-            plan = col_text(line, COL_PLAN)
+            plan = col_text(line, cols["plan"])
             if re.fullmatch(r"\d{1,4}", plan):
-                code = col_text(line, COL_MAJORCODE)
+                code = col_text(line, cols["code"])
                 if best is None or t < best[0]:
                     best = (t, plan, code)
     return best
 
 
-def parse_page(page, year, page_no, batch_state):
+def parse_page(page, year, page_no, batch_state, cols=COLS_STD):
     clean = page.filter(lambda o: o.get("size", 0) < WM_SIZE if o["object_type"] == "char" else True)
     txt = clean.extract_text() or ""
     for b in BATCHES:
@@ -125,20 +132,20 @@ def parse_page(page, year, page_no, batch_state):
                 school = nm
                 mcity = re.search(r"([一-鿿]{2,4}市)", line_txt)
                 city = mcity.group(1) if mcity else city
-                owner = "公办" if "公办" in row_txt else "民办"
+                owner = "公办" if "公办" in line_txt else "民办"
                 batch_state.update(school=school, city=city, owner=owner)
             continue
         # 专业名称行：专业名称列有中文 且 学制列是 三/四/五 或 学制行
-        raw_major = col_text(line, COL_MAJOR)
+        raw_major = col_text(line, cols["major"])
         # 境外校区剔除（窗口含"林吉特/马来西亚/境外"等）；中外合作在闽办学，保留
         if any(k in window_text(t) for k in ("林吉特", "马来西亚", "境外办学", "办学地点在马来西亚")):
             continue
         # 截断混入的校名污染（专业名不含"大学/学院"，故安全）
         major = raw_major.split(school)[0].strip() if (school and school in raw_major) else raw_major
         major = re.split(r"(大学|学院|分校)", major)[0].strip()
-        xz = col_text(line, COL_XUEZHI)
+        xz = col_text(line, cols["xz"])
         if major and re.search(r"[一-鿿]", major) and ("专业组" not in major) and (xz in ("三", "四", "五", "二") or major):
-            pr = find_plan_row(rows, t)
+            pr = find_plan_row(rows, t, cols)
             if pr and school:
                 _, plan, code = pr
                 out.append({"year": year, "school": school, "city": city or "",
@@ -148,12 +155,38 @@ def parse_page(page, year, page_no, batch_state):
 
 
 def detect_two_col(pdf):
-    """采样前若干页：乱码字（渊/冤）多 → 2020/2021 两栏格式。"""
+    """采样前若干页：乱码字（渊/冤）多 → 2020 两栏+字体替换格式。"""
     g = 0
     for p in pdf.pages[:8]:
         t = p.extract_text() or ""
         g += t.count("渊") + t.count("冤")
     return g > 40
+
+
+def detect_single_cols(pdf):
+    """单栏格式判 2021(列带左移) vs 2022-2025(标准)：
+    采样数据行 3 位专业代号 x 中位 <100 → 2021 左移带，否则标准带。"""
+    xs = []
+    for p in pdf.pages[20:60]:
+        clean = p.filter(lambda o: o.get("size", 0) < WM_SIZE if o["object_type"] == "char" else True)
+        for w in clean.extract_words():
+            if re.fullmatch(r"\d{3}", w["text"]) and 60 < w["x0"] < 150:
+                xs.append(w["x0"])
+        if len(xs) > 300:
+            break
+    if not xs:
+        return COLS_STD
+    med = sorted(xs)[len(xs) // 2]
+    return COLS_2021 if med < 100 else COLS_STD
+
+
+def school_name_from_text(txt):
+    """从整行文本抽校名基名（去 4 位院校代号前缀、去 （变体） 后缀）。
+    两栏右栏里院校代号与校名常合成一词（"1125闽南科技学院825"），其 x0 落在代号位、
+    不在专业名带内 → 不能靠 x 列带抽校名，必须用整行正则。返回 None 表示非校名行。"""
+    body = re.sub(r"^\s*\d{4}", "", txt)          # 去院校代号前缀
+    m = re.match(r"([一-鿿]{2,12}(?:大学|学院|学校))", body)
+    return m.group(1) if m else None
 
 
 def parse_half(half_words, year, page_no, school_ctx, batch):
@@ -164,26 +197,26 @@ def parse_half(half_words, year, page_no, school_ctx, batch):
     for t in sorted(rows):
         line = rows[t]
         txt = "".join(w["text"] for w in line)
-        # 含中文且在校名/专业带 → 记为候选校名（校名行常在公办行上一行）
-        chinese_major = "".join(w["text"] for w in line if in_col(w["x0"], C2_MAJOR) and re.search(r"[一-鿿]", w["text"]))
+        cand = school_name_from_text(txt)          # 整行抽校名（两栏右栏合成词亦可）
         if any(o in txt for o in OWNER):
-            nm = pending_name or chinese_major
-            nm = re.split(r"[（(]", nm)[0].strip()
-            if nm and re.search(r"(大学|学院|学校)", nm):
+            nm = pending_name or cand              # 校名常在 公办/民办 行的上一行
+            if nm:
                 school_ctx["school"] = nm
                 mcity = re.search(r"([一-鿿]{2,4}市)", txt)
                 school_ctx["city"] = mcity.group(1) if mcity else school_ctx.get("city")
                 school_ctx["owner"] = "公办" if "公办" in txt else "民办"
             pending_name = None
             continue
-        # 记候选校名（带4位院校代号+中文名的行）
-        if re.search(r"(大学|学院|学校)", chinese_major) and "专业组" not in chinese_major:
-            pending_name = re.split(r"[（(]", chinese_major)[0].strip()
+        # 校名候选行（含校名、非专业组）→ 暂存，待下方 公办/民办 行提交
+        if cand and "专业组" not in txt:
+            pending_name = cand
         # 专业名称行：境外剔除
         if "马来西亚" in txt or "林吉特" in txt:
             continue
+        # 专业名 = 专业名带中文；校名候选行(cand)不当专业，避免把校名误当专业
+        chinese_major = "".join(w["text"] for w in line if in_col(w["x0"], C2_MAJOR) and re.search(r"[一-鿿]", w["text"]))
         major = re.split(r"(大学|学院|分校)", chinese_major)[0].strip()
-        if major and major not in OWNER and "专业组" not in major and len(major) >= 2 \
+        if major and not cand and major not in OWNER and "专业组" not in major and len(major) >= 2 \
                 and not re.search(r"(大学|学院|学校|招生|网址|学费|收费|学年|说明)", major):
             # 找下方数据行的计划数（C2_PLAN 带）
             plan = code = None
@@ -221,8 +254,10 @@ def parse_page_2col(page, year, page_no, state):
     right = [dict(w, x0=w["x0"] - RIGHT_OFFSET, x1=w.get("x1", w["x0"]) - RIGHT_OFFSET)
              for w in words if w["x0"] >= SPLIT_X]
     out = []
-    for half in (left, right):
-        out += parse_half(half, year, page_no, state.setdefault("ctx", {}), batch)
+    # 左右栏是两个独立的纵向学校序列，各自跨页延续 → 必须各持独立 school 上下文。
+    # 共用一个 ctx 会让右栏开头无表头的专业继承左栏末校（如闽南科技学院的专业被错记到闽江学院）。
+    for half, key in ((left, "ctxL"), (right, "ctxR")):
+        out += parse_half(half, year, page_no, state.setdefault(key, {}), batch)
     return out
 
 
@@ -230,9 +265,15 @@ def run(pdf_path, year, out_path):
     rows = []
     state = {}
     with pdfplumber.open(pdf_path) as pdf:
-        two_col = detect_two_col(pdf)
-        print(f"  版式：{'两栏(2020/2021)' if two_col else '单栏(2022-2025)'}")
-        parser = parse_page_2col if two_col else parse_page
+        if detect_two_col(pdf):
+            print("  版式：两栏+字体替换(2020)")
+            parser = parse_page_2col
+        else:
+            cols = detect_single_cols(pdf)
+            print(f"  版式：单栏·{'2021左移列带' if cols is COLS_2021 else '标准(2022-2025)'}")
+
+            def parser(page, year, page_no, state, _c=cols):
+                return parse_page(page, year, page_no, state, _c)
         n = len(pdf.pages)
         for i, page in enumerate(pdf.pages):
             rows.extend(parser(page, year, i + 1, state))
