@@ -95,52 +95,56 @@ def minmax(vals):
 
 
 def aggregate(fcm_rows, deg_rows, scale_pipe, qual_cfg):
-    """→ {(city,year,caliber): {'fcm':加权累计, 'deg':加权累计}}（嵌套）。"""
+    """→ {(city,year,caliber): {'fcm':加权累计, 'deg':加权累计}}（嵌套）。
+
+    **升级感知**：同一专业点(同城同校同专业)可能多次认定(省级→国家级)。某年该点的有效权重
+    = 该年及之前**最新一次**认定的 tier 权重（取代、非累加），避免升级被重复计数。不同专业点求和。
+    城市归属：优先用录入文件给定的 city（已 campus 级归市，如华侨大学厦门/泉州分校），
+    其不在福建9市时再回退 name2city。"""
     C, Badd, Xadd, broad, _ = scale_pipe.load_calibers()
     name2city, former2cur, _ = scale_pipe.load_schools()
     _, tier_w, lvl_w, disc2cal = qual_cfg
     cell = defaultdict(lambda: {"fcm": 0.0, "deg": 0.0})
 
     def city_of(school, given):
-        s = former2cur.get(school, school)
-        return name2city.get(s) or given
+        if given in CITIES:                       # 录入文件 campus 级归市优先（华侨大学分校）
+            return given
+        return name2city.get(former2cur.get(school, school))
 
-    # 一流专业：专业名 → 口径；tier 加权；designation_year 起累计
-    for r in fcm_rows:
-        cal = scale_pipe.home_caliber(r["major_standard"], C, Badd, Xadd, broad)
-        if cal is None:
-            continue
-        city = city_of(r["school"], r.get("city"))
-        if city not in CITIES:
-            continue
-        try:
-            dy = int(r["designation_year"])
-        except (ValueError, TypeError, KeyError):
-            continue
-        w = wlookup(tier_w, r.get("tier", ""))
-        for y in YEARS:
-            if y >= dy:
+    def accumulate(rows, comp, cal_fn, wmap, year_key):
+        # 先按"专业点"分组收集 (认定年, tier/level)，再按年取最新认定 → 升级感知
+        points = defaultdict(list)   # (city, cal, school, item) -> [(year, label)]
+        for r in rows:
+            item = r.get("major_standard") or r.get("discipline") or ""
+            cal = cal_fn(item)
+            if cal is None:
+                continue
+            city = city_of(r["school"], r.get("city"))
+            if city not in CITIES:
+                continue
+            try:
+                ry = int(r[year_key])
+            except (ValueError, TypeError, KeyError):
+                continue
+            label = (r.get("tier") or r.get("level") or "").strip()
+            points[(city, cal, r["school"], item)].append((ry, label))
+        for (city, cal, _sch, _it), evs in points.items():
+            evs.sort()
+            for y in YEARS:
+                active = [lab for (ry, lab) in evs if ry <= y]
+                if not active:
+                    continue
+                w = wlookup(wmap, active[-1])     # 该年最新一次认定的 tier/level
                 for k in CALIBERS:
                     if RANK[cal] <= RANK[k]:
-                        cell[(city, y, k)]["fcm"] += w
-    # 学位点：学科 → 口径；level 加权；active_from_year 起累计
-    for r in deg_rows:
-        cal = discipline_caliber(r["discipline"], disc2cal)
-        if cal is None:
-            continue
-        city = city_of(r["school"], r.get("city"))
-        if city not in CITIES:
-            continue
-        try:
-            ay = int(r["active_from_year"])
-        except (ValueError, TypeError, KeyError):
-            continue
-        w = wlookup(lvl_w, r.get("level", ""))
-        for y in YEARS:
-            if y >= ay:
-                for k in CALIBERS:
-                    if RANK[cal] <= RANK[k]:
-                        cell[(city, y, k)]["deg"] += w
+                        cell[(city, y, k)][comp] += w
+
+    accumulate(fcm_rows, "fcm",
+               lambda m: scale_pipe.home_caliber(m, C, Badd, Xadd, broad),
+               tier_w, "designation_year")
+    accumulate(deg_rows, "deg",
+               lambda d: discipline_caliber(d, disc2cal),
+               lvl_w, "active_from_year")
     return cell
 
 
@@ -213,6 +217,11 @@ def run(fcm_path, degree_path):
     print(f"读入：一流专业点 {len(fcm)} 条；学位点 {len(deg)} 条。")
     cell = aggregate(fcm, deg, scale_pipe, qual_cfg)
     rows_out = build_panel(cell, qual_cfg)
+    # 学位点缺省时标注：当前复合仅含一流专业成分(0.6权重，CCD自身min-max对此尺度不变)
+    if not any(v["deg"] for v in cell.values()):
+        for r in rows_out:
+            if r["data_status"] == "calculated":
+                r["data_status"] = "first_class_only(degree_pending)"
     write_panel(rows_out)
     filled = sum(1 for r in rows_out if r["value"])
     print(f"已填 {PANEL.relative_to(ROOT)}：{filled}/{len(rows_out)} 单元（复合质量 0–1）。")
@@ -234,6 +243,9 @@ def self_test():
         {"school": "福州大学", "city": "福州", "major_standard": "人工智能", "tier": "国家级", "designation_year": "2020"},
         {"school": "福州大学", "city": "福州", "major_standard": "软件工程", "tier": "省级", "designation_year": "2019"},
         {"school": "厦门大学", "city": "厦门", "major_standard": "计算机科学与技术", "tier": "国家级", "designation_year": "2019"},
+        # 升级事件：泉州师院 计算机 省级2019 → 国家级2021（同一点，须取最新非累加）
+        {"school": "泉州师范学院", "city": "泉州", "major_standard": "计算机科学与技术", "tier": "省级", "designation_year": "2019"},
+        {"school": "泉州师范学院", "city": "泉州", "major_standard": "计算机科学与技术", "tier": "国家级", "designation_year": "2021"},
     ]
     deg = [
         {"school": "厦门大学", "city": "厦门", "discipline": "计算机科学与技术", "discipline_code": "0812", "level": "博士", "active_from_year": "2018"},
@@ -249,7 +261,10 @@ def self_test():
     assert abs(cell[("福州", 2019, "C")]["fcm"] - 0.0) < 1e-9
     # 断言4：厦门B口径 deg 含博士1.0
     assert abs(cell[("厦门", 2019, "B")]["deg"] - 1.0) < 1e-9, cell[("厦门", 2019, "B")]
-    # 断言5：复合面板值 ∈[0,1]，且厦门(有学位点)>福州(无)在B口径某年
+    # 断言5：升级感知——泉州计算机 2019/2020 取省级0.5，2021 起取国家级1.0（非 0.5+1.0=1.5）
+    assert abs(cell[("泉州", 2020, "B")]["fcm"] - 0.5) < 1e-9, cell[("泉州", 2020, "B")]
+    assert abs(cell[("泉州", 2021, "B")]["fcm"] - 1.0) < 1e-9, cell[("泉州", 2021, "B")]
+    # 断言6：复合面板值 ∈[0,1]
     rows_out = build_panel(cell, qual_cfg)
     for r in rows_out:
         if r["value"]:
