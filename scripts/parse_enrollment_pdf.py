@@ -13,14 +13,17 @@
 ⚠ 适配"普通类物理科目组"版式（2020/2022/2023 等）。其它版式（高职分类、文史、2019 doc）
   列边界可能不同，需另调 COLS 或单独适配。
 
-⚠ 已知问题（v1，输出须人工抽查后方可冻结）：
-  1. 特殊专区 leak：境外校区（厦大马来西亚分校）/中外合作/面向特定生源 等子区段，
-     若"马来西亚/境外"三字写在子标题而非专业名里，naive 列解析会漏剔/污染专业名。
-     需"区段上下文"识别（检测子标题、整段排除）——待迭代。
-  2. 同一专业在不同专业组/招生方向各有一条计划，**应求和**——下游 e_supply_scale_pipeline
-     的去重键需含专业代号/不去重而求和（当前键会错并多专业组条目，待修）。
-  3. 计划数大值（如某民办软件 300+）需对照原 PDF 人工核验，排除误配总计。
-  验证法：抽查 3—5 校的分专业计划合计 vs 原 PDF 人工读数，再决定是否进面板。
+已修（v2，2026-06）：
+  ✓ 境外校区剔除：窗口扫描"林吉特/马来西亚/办学地点在马来西亚"整段剔除（厦大马来西亚分校已干净）；
+    中外合作在闽办学保留。专业名校名污染截断（残留 0）。真重复去重。
+  ✓ 莆田软件306 等大值经原 PDF 核验为真实计划（配对正确），非误配总计。
+  ✓ 下游 e_supply_scale_pipeline 去重键含专业代号+计划+页 → 多专业组同专业**求和**。
+
+⚠ 仍待（输出仍须人工抽查后方可冻结）：
+  1. 仅适配"普通类物理科目组"版式（2020/2022/2023）。**高职分类招考（面向中职生·本科批）、
+     文史/历史科目组、2019 doc** 版式未适配——职业本科招生走高职分类渠道，须单独解析后合并。
+  2. 华侨大学等跨校区：下游标 needs_campus，待按校区核验协议归市。
+  3. 最终须抽查 3—5 校分专业计划合计 vs 原 PDF 人工读数，再进面板。
 
 用法：
   python3 scripts/parse_enrollment_pdf.py --pdf <计划册.pdf> --year 2022 [--out cand.csv]
@@ -86,26 +89,34 @@ def parse_page(page, year, page_no, batch_state):
             batch_state["batch"] = b   # 页头批次，沿用到下页直到变化
     words = clean.extract_words()
     rows = group_rows(words)
+    row_txt = {t: "".join(w["text"] for w in ln) for t, ln in rows.items()}
+    sorted_tops = sorted(rows)
+
+    def window_text(t0):
+        # 该专业行附近窗口（含数据行/续行）的全文，用于识别境外校区
+        return "".join(row_txt[t] for t in sorted_tops if t0 - 4 <= t <= t0 + PAIR_TOL + 4)
+
     out = []
     school = batch_state.get("school"); city = batch_state.get("city"); owner = batch_state.get("owner")
     for t, line in rows.items():
         # 校名行：含 公办/民办，且左列有中文校名
-        row_txt = "".join(w["text"] for w in line)
-        if any(o in row_txt for o in OWNER):
+        line_txt = "".join(w["text"] for w in line)
+        if any(o in line_txt for o in OWNER):
             left = [w["text"] for w in line if in_col(w["x0"], (0, 140)) and re.search(r"[一-鿿]", w["text"])]
             nm = "".join(left)
             nm = re.split(r"[（(]", nm)[0].strip()   # 去掉(校区,性别)
             if nm and re.search(r"(大学|学院|学校|大学城)", nm):
                 school = nm
-                mcity = re.search(r"([一-鿿]{2,4}市)", row_txt)
+                mcity = re.search(r"([一-鿿]{2,4}市)", line_txt)
                 city = mcity.group(1) if mcity else city
                 owner = "公办" if "公办" in row_txt else "民办"
                 batch_state.update(school=school, city=city, owner=owner)
             continue
         # 专业名称行：专业名称列有中文 且 学制列是 三/四/五 或 学制行
         raw_major = col_text(line, COL_MAJOR)
-        if "马来西亚" in raw_major or "境外" in raw_major:
-            continue   # 境外校区（如厦大马来西亚分校）剔除，不进城市E端
+        # 境外校区剔除（窗口含"林吉特/马来西亚/境外"等）；中外合作在闽办学，保留
+        if any(k in window_text(t) for k in ("林吉特", "马来西亚", "境外办学", "办学地点在马来西亚")):
+            continue
         # 截断混入的校名污染（专业名不含"大学/学院"，故安全）
         major = raw_major.split(school)[0].strip() if (school and school in raw_major) else raw_major
         major = re.split(r"(大学|学院|分校)", major)[0].strip()

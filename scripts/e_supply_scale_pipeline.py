@@ -125,7 +125,10 @@ def run(cand_path):
                 plan = int(float(r.get("plan") or 0))
             except ValueError:
                 plan = 0
-            key = (city, y, cur, major, (r.get("batch") or "").strip())
+            # 去重键含专业代号+计划+页：同一专业在不同专业组/方向各一条计划应**求和**，
+            # 仅剔真重复（解析器已按 page+code+plan 去重，此处再保险一层）。
+            key = (city, y, cur, major, r.get("major_code", ""), (r.get("batch") or "").strip(),
+                   plan, r.get("page", ""))
             if key in seen:
                 continue
             seen.add(key); n_kept += 1
