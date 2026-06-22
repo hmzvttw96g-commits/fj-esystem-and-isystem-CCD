@@ -30,6 +30,10 @@ COLS = ["city", "year", "permanent_pop_10k", "source"]
 # 用途：填表后核 2020 行是否落在锚点±15%内，抓"误抄户籍/单位错"等粗错，非数据本身。
 CENSUS2020_ANCHOR = {"福州": 829, "厦门": 516, "泉州": 878, "漳州": 505, "莆田": 321,
                      "三明": 249, "南平": 268, "龙岩": 272, "宁德": 315}
+# 全省常住总人口（万人）——《福建统计年鉴2025》表3-1（七普后修订序列；2020=4161≈七普4154）。
+# 用途：某年九市全齐时，Σ九市 应 ≈ 全省，抓"漏某市/抄错口径"。软校验，阈值2%。
+PROVINCE_TOTAL = {2019: 4137, 2020: 4161, 2021: 4187, 2022: 4188, 2023: 4183, 2024: 4193}
+PROV_TOL = 0.02                 # Σ九市 偏离全省 >2% 提示
 MAG_LO, MAG_HI = 100, 1200      # 福建地级市常住人口合理量级（万人）
 YOY_FLAG = 0.05                 # 年际变动>±5% 提示（人口缓变，超此疑typo/口径混用）
 
@@ -85,6 +89,12 @@ def validate(pop):
         for (y0, v0), (y1, v1) in zip(seq, seq[1:]):
             if v0 and abs(v1 - v0) / v0 > YOY_FLAG:
                 flags.append(f"⚠ 跳变 {c} {y0}→{y1}: {v0}→{v1}（{(v1-v0)/v0:+.0%}，人口缓变疑typo/口径混）")
+    # Σ九市 ≈ 全省（仅九市全齐的年份；抓漏市/口径错）
+    for y in YEARS:
+        if all((c, y) in pop for c in CITIES) and y in PROVINCE_TOTAL:
+            s = sum(pop[(c, y)][0] for c in CITIES); tot = PROVINCE_TOTAL[y]
+            if abs(s - tot) / tot > PROV_TOL:
+                flags.append(f"⚠ 加总核 {y}: Σ九市={s:g} vs 全省{tot}（{(s-tot)/tot:+.1%}，>2%疑漏市/口径错）")
     return flags
 
 
@@ -148,7 +158,12 @@ def self_test():
     assert any("跳变" in x and "泉州" in x for x in flags), "应抓到泉州跳变"
     assert not any("福州" in x for x in flags), "福州正常不应报错"
     os.unlink(p)
-    print("自测通过：量级/单位/七普锚/跳变校验 + 读入 全部正确。")
+    # 加总核：2024 九市全齐。正确总量≈4193 不报；漏一市/抄错则报
+    good = {(c, 2024): (v, "") for c, v in zip(CITIES, [880, 535, 890, 510, 320, 250, 268, 272, 268])}  # Σ=4193
+    assert not any("加总核" in x for x in validate(good)), "正确加总不应报错"
+    bad = dict(good); bad[("福州", 2024)] = (500, "")  # 福州抄成500 → Σ偏低
+    assert any("加总核" in x for x in validate(bad)), "漏抓加总偏差"
+    print("自测通过：量级/单位/七普锚/跳变/Σ九市≈全省 校验 + 读入 全部正确。")
 
 
 def main():
