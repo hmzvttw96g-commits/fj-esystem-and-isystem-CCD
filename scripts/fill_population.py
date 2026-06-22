@@ -18,7 +18,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PANELS = [ROOT / "data" / "panel" / "functional_chain" / "e_supply_scale_panel.csv",
-          ROOT / "data" / "panel" / "functional_chain" / "e_supply_quality_panel.csv"]
+          ROOT / "data" / "panel" / "functional_chain" / "e_supply_quality_panel.csv",
+          ROOT / "data" / "panel" / "functional_chain" / "i_carrier_panel.csv",
+          ROOT / "data" / "panel" / "functional_chain" / "i_conversion_panel.csv"]
 INPUT_DIR = ROOT / "data" / "external" / "population"
 TEMPLATE = INPUT_DIR / "fujian_city_population.csv"
 
