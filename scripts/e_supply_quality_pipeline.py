@@ -161,9 +161,12 @@ def build_panel(cell, qual_cfg):
         for i, (c, y) in enumerate(keys):
             has = (c, y, k) in cell
             comp = wf * (fmm.get(i) or 0.0) + wd * (dmm.get(i) or 0.0)
+            # 质量是**计数指标**：无一流/学位点 = 0(有效低值),非缺失。总是写值(无点=0)，
+            # 让下游 equal_weight 不把"有招生但无一流"的城市误判为不可计算（由供给规模侧的缺失
+            # 来界定无AI供给的城市-年）。
             rows_out.append({"city": c, "year": y, "caliber": k,
-                             "value": f"{comp:.4f}" if has else "",
-                             "population": "", "data_status": "calculated" if has else "missing"})
+                             "value": f"{comp:.4f}",
+                             "population": "", "data_status": "calculated" if has else "calculated_zero"})
     rows_out.sort(key=lambda r: (CITIES.index(r["city"]), r["year"], CALIBERS.index(r["caliber"])))
     return rows_out
 
@@ -220,8 +223,7 @@ def run(fcm_path, degree_path):
     # 学位点缺省时标注：当前复合仅含一流专业成分(0.6权重，CCD自身min-max对此尺度不变)
     if not any(v["deg"] for v in cell.values()):
         for r in rows_out:
-            if r["data_status"] == "calculated":
-                r["data_status"] = "first_class_only(degree_pending)"
+            r["data_status"] += "_fcOnly"
     write_panel(rows_out)
     filled = sum(1 for r in rows_out if r["value"])
     print(f"已填 {PANEL.relative_to(ROOT)}：{filled}/{len(rows_out)} 单元（复合质量 0–1）。")
