@@ -82,9 +82,57 @@ def run(year=2024, save_csv=False):
     return rows, out
 
 
+# 真实边界组合（福建省级区域协调战略 + 都市圈 + 跨核理论互补）
+BOUNDARY = {
+    "福厦(跨核互补·C类)": ["福州", "厦门"],
+    "厦漳泉(都市圈·B类)": ["厦门", "漳州", "泉州"],
+    "福州都市圈(B类)": ["福州", "莆田", "宁德"],
+    "闽东北协同区(B类)": ["福州", "莆田", "宁德", "南平"],
+    "闽西南协同区(B类)": ["厦门", "漳州", "泉州", "龙岩", "三明"],
+}
+
+
+def boundary_test(year=2024, save_csv=False):
+    """边界约束组合 vs 同规模随机组合（安慰剂参照）：报各边界组合在同规模 C(9,n) 中的分位。"""
+    EI, pop = load(year)
+    cities = list(EI)
+
+    def metrics(combo):
+        Es = [EI[c][0] for c in combo]; Is = [EI[c][1] for c in combo]
+        Ds = [EI[c][2] for c in combo]; ps = [pop[c] for c in combo]; P = sum(ps)
+        Eg = sum(p * e for p, e in zip(ps, Es)) / P; Ig = sum(p * i for p, i in zip(ps, Is)) / P
+        Dg = ccd(Eg, Ig); RSP = Dg - sum(Ds) / len(combo)
+        BI = sum(abs(e - i) for e, i in zip(Es, Is)) / len(combo) - abs(Eg - Ig)
+        return {"Dg": Dg, "RSP": RSP, "BI": BI}
+
+    print(f"\n=== 边界约束组合检验（{year} B口径；分位=在同规模随机组合中的排名）===")
+    print(f"{'边界组合':<22}{'规模':>4}{'D_S(分位)':>14}{'RSP(分位)':>14}{'BI(分位)':>14}")
+    out = []
+    for name, combo in BOUNDARY.items():
+        n = len(combo); allc = [list(x) for x in itertools.combinations(cities, n)]
+        m = metrics(combo); row = {"name": name, "n": n}
+        cells = ""
+        for key in ["Dg", "RSP", "BI"]:
+            vals = sorted((metrics(c)[key] for c in allc), reverse=True)
+            rk = sum(1 for v in vals if v > m[key]) + 1
+            row[key] = round(m[key], 4); row[key + "_rank"] = f"{rk}/{len(allc)}"
+            cells += f"{m[key]:>+8.3f}{f'({rk}/{len(allc)})':>10}"
+        out.append(row)
+        print(f"{name:<22}{n:>4}{cells}")
+    if save_csv:
+        AUDIT.mkdir(parents=True, exist_ok=True)
+        with open(AUDIT / "boundary_synergy.csv", "w", newline="", encoding="utf-8-sig") as f:
+            w = csv.writer(f); w.writerow(["combo", "n", "Dg", "Dg_rank", "RSP", "RSP_rank", "BI", "BI_rank"])
+            for r in out:
+                w.writerow([r["name"], r["n"], r["Dg"], r["Dg_rank"], r["RSP"], r["RSP_rank"], r["BI"], r["BI_rank"]])
+        print(f"已落审计：{AUDIT}/boundary_synergy.csv")
+    return out
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--year", type=int, default=2024)
     ap.add_argument("--csv", action="store_true")
     a = ap.parse_args()
     run(a.year, a.csv)
+    boundary_test(a.year, a.csv)
