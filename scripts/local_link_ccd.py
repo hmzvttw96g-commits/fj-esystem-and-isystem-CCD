@@ -27,6 +27,8 @@ FILES = {"供给规模": "e_supply_scale_panel", "供给质量": "e_supply_quali
          "产业承接": "i_carrier_panel", "产业转化": "i_conversion_panel"}
 PAIRS = [("D12", "供给规模", "供给质量", "教育内部"), ("D34", "产业承接", "产业转化", "产业内部"),
          ("D13", "供给规模", "产业承接", "数量供需"), ("D24", "供给质量", "产业转化", "质量转化")]
+# 其余两对（理论意义较弱，入附录；与张等2025做满 C(4,2)=6 对对齐）
+APPENDIX = [("D14", "供给规模", "产业转化", "规模—转化"), ("D23", "供给质量", "产业承接", "质量—承接")]
 
 
 def CCD(a, b):
@@ -99,7 +101,49 @@ def run(year=2024, save=False):
                 w.writerow([r["city"], round(r["D"], 4), round(r["D12"], 4), round(r["D34"], 4),
                             round(r["D13"], 4), round(r["D24"], 4), r["type"]])
         print(f"\n已落审计：{AUDIT}/local_link_ccd.csv")
+    extras(year)
     return rows
+
+
+def Csq(a, b):
+    return 0.0 if (a <= 0 or b <= 0) else 4 * a * b / (a + b) ** 2  # 平方式耦合度(张等2025)
+
+
+def extras(year=2024):
+    """① 其余两对 D14/D23（满6对）；② 整体D耦合度形式稳健性：主模型(√式) vs ε下限 vs 平方式C。"""
+    fA = _standardizers([(c, y) for c in CITIES for y in YRS])
+
+    def overall(c, csq=False, eps=0.0):
+        v = {l: fA[l]((c, year)) for l in LINKS4_FULL}
+        if any(x is None for x in v.values()):
+            return None
+        if eps:
+            v = {l: eps + (1 - eps) * x for l, x in v.items()}
+        E = (v["供给规模"] + v["供给质量"]) / 2; I = (v["产业承接"] + v["产业转化"]) / 2
+        if E <= 0 or I <= 0:
+            return 0.0
+        K = Csq(E, I) if csq else 2 * math.sqrt(E * I) / (E + I)
+        return math.sqrt(K * (E + I) / 2)
+
+    print("\n=== ① 其余两对（附录，2024 B）===")
+    print(f"{'市':<5}{'D14规模—转化':>12}{'D23质量—承接':>12}")
+    for c in CITIES:
+        v = {l: fA[l]((c, year)) for l in LINKS4_FULL}
+        print(f"{c:<5}{CCD(v['供给规模'], v['产业转化']):>12.3f}{CCD(v['供给质量'], v['产业承接']):>12.3f}")
+    print("\n=== ② 整体D耦合度形式稳健性（2024 B）===")
+    std = {c: overall(c) for c in CITIES}; ep = {c: overall(c, eps=0.01) for c in CITIES}; sq = {c: overall(c, csq=True) for c in CITIES}
+    rk = lambda d: sorted(CITIES, key=lambda x: -d[x])
+    def spearman(a, b):
+        ra = {c: i for i, c in enumerate(rk(a))}; rb = {c: i for i, c in enumerate(rk(b))}
+        n = len(CITIES); return 1 - 6 * sum((ra[c] - rb[c]) ** 2 for c in CITIES) / (n * (n * n - 1))
+    print(f"{'市':<5}{'主模型':>8}{'ε下限':>8}{'平方C':>8}")
+    for c in CITIES:
+        print(f"{c:<5}{std[c]:>8.3f}{ep[c]:>8.3f}{sq[c]:>8.3f}")
+    print(f"  前2：主{rk(std)[:2]} / ε{rk(ep)[:2]} / 平方C{rk(sq)[:2]}；"
+          f"Spearman 主×ε={spearman(std, ep):.3f}、主×平方C={spearman(std, sq):.3f}")
+
+
+LINKS4_FULL = ["供给规模", "供给质量", "产业承接", "产业转化"]
 
 
 def self_test():
